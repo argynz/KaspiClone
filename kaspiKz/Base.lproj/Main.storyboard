@@ -75,14 +75,35 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZc-Qy-8Hn">
                                                 <rect key="frame" x="0.0" y="16" width="393" height="57"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6F-Dh-Lpb">
-                                                        <rect key="frame" x="22.000000000000004" y="19" width="43.333333333333343" height="19.333333333333329"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dKJ-MH-U3i">
+                                                        <rect key="frame" x="21.999999999999996" y="19.333333333333314" width="42.666666666666657" height="18.666666666666671"/>
+                                                        <attributedString key="attributedText">
+                                                            <fragment content="Аргын">
+                                                                <attributes>
+                                                                    <color key="NSColor" systemColor="labelColor"/>
+                                                                    <font key="NSFont" metaFont="system" size="14"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jLX-HX-H3T">
+                                                        <rect key="frame" x="325" y="11.333333333333314" width="46" height="34.333333333333336"/>
+                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="pencil" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="nameEditButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sAn-Qt-MVL"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="si1-ER-77Q">
+                                                        <rect key="frame" x="21.999999999999996" y="18.333333333333314" width="41.666666666666657" height="20.333333333333329"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Аргын" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Vk-P0-wSd">
-                                                        <rect key="frame" x="71.333333333333329" y="18.333333333333314" width="50.666666666666671" height="20.333333333333329"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Аргын" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTy-Oe-xGc">
+                                                        <rect key="frame" x="68.666666666666671" y="18.333333333333314" width="50.666666666666671" height="20.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -90,16 +111,32 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstItem="6Vk-P0-wSd" firstAttribute="centerY" secondItem="xZc-Qy-8Hn" secondAttribute="centerY" id="5k4-71-S43"/>
-                                                    <constraint firstAttribute="height" constant="57" id="F3S-75-s7b"/>
-                                                    <constraint firstItem="G6F-Dh-Lpb" firstAttribute="centerY" secondItem="xZc-Qy-8Hn" secondAttribute="centerY" id="QoI-3r-rcr"/>
-                                                    <constraint firstItem="6Vk-P0-wSd" firstAttribute="leading" secondItem="G6F-Dh-Lpb" secondAttribute="trailing" constant="6" id="Xof-bk-bcm"/>
-                                                    <constraint firstItem="G6F-Dh-Lpb" firstAttribute="leading" secondItem="xZc-Qy-8Hn" secondAttribute="leading" constant="22" id="hVC-fl-8A0"/>
+                                                    <constraint firstItem="dKJ-MH-U3i" firstAttribute="leading" secondItem="xZc-Qy-8Hn" secondAttribute="leading" constant="22" id="7pn-5n-KKI"/>
+                                                    <constraint firstItem="jLX-HX-H3T" firstAttribute="centerY" secondItem="xZc-Qy-8Hn" secondAttribute="centerY" id="RpG-tU-FRN"/>
+                                                    <constraint firstAttribute="trailing" secondItem="jLX-HX-H3T" secondAttribute="trailing" constant="22" id="TOD-kM-Cee"/>
+                                                    <constraint firstItem="si1-ER-77Q" firstAttribute="leading" secondItem="xZc-Qy-8Hn" secondAttribute="leading" constant="22" id="Zam-N2-4Ib"/>
+                                                    <constraint firstItem="si1-ER-77Q" firstAttribute="centerY" secondItem="xZc-Qy-8Hn" secondAttribute="centerY" id="hCM-Fq-MiR"/>
+                                                    <constraint firstItem="uTy-Oe-xGc" firstAttribute="leading" secondItem="si1-ER-77Q" secondAttribute="trailing" constant="5" id="hHE-2w-j4c"/>
+                                                    <constraint firstItem="dKJ-MH-U3i" firstAttribute="centerY" secondItem="xZc-Qy-8Hn" secondAttribute="centerY" id="i3Y-cB-q9D"/>
+                                                    <constraint firstItem="uTy-Oe-xGc" firstAttribute="centerY" secondItem="xZc-Qy-8Hn" secondAttribute="centerY" id="sGO-jd-dQ4"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GLv-wg-Mt1">
                                                 <rect key="frame" x="0.0" y="89" width="393" height="57"/>
                                                 <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ISf-15-VuN">
+                                                        <rect key="frame" x="22.000000000000004" y="19.333333333333314" width="63.333333333333343" height="18.666666666666671"/>
+                                                        <attributedString key="attributedText">
+                                                            <fragment content="Жиенбай">
+                                                                <attributes>
+                                                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                    <font key="NSFont" metaFont="system" size="14"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
+                                                    </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Фамилия:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fcg-Ma-Ogj">
                                                         <rect key="frame" x="22" y="20" width="80.333333333333329" height="19.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
@@ -112,9 +149,22 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0nV-t4-POD">
+                                                        <rect key="frame" x="325" y="11.333333333333314" width="46" height="34.333333333333336"/>
+                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="pencil" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="surnameEditButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tmz-ZQ-3gN"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
+                                                    <constraint firstItem="0nV-t4-POD" firstAttribute="centerY" secondItem="GLv-wg-Mt1" secondAttribute="centerY" id="D13-3I-046"/>
+                                                    <constraint firstItem="ISf-15-VuN" firstAttribute="leading" secondItem="GLv-wg-Mt1" secondAttribute="leading" constant="22" id="Ixu-Nb-aOA"/>
+                                                    <constraint firstItem="ISf-15-VuN" firstAttribute="centerY" secondItem="GLv-wg-Mt1" secondAttribute="centerY" id="JIs-Ns-z7S"/>
+                                                    <constraint firstAttribute="trailing" secondItem="0nV-t4-POD" secondAttribute="trailing" constant="22" id="L2t-6k-lnV"/>
                                                     <constraint firstItem="Fcg-Ma-Ogj" firstAttribute="top" secondItem="GLv-wg-Mt1" secondAttribute="top" constant="20" id="Ygh-eR-8tJ"/>
                                                     <constraint firstItem="Fcg-Ma-Ogj" firstAttribute="leading" secondItem="GLv-wg-Mt1" secondAttribute="leading" constant="22" id="Yux-P9-FAJ"/>
                                                     <constraint firstItem="bhx-Fh-acW" firstAttribute="leading" secondItem="Fcg-Ma-Ogj" secondAttribute="trailing" constant="6" id="bFj-Xx-006"/>
@@ -125,6 +175,7 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstItem="GLv-wg-Mt1" firstAttribute="top" secondItem="LMc-ez-Njv" secondAttribute="top" constant="89" id="6kw-Zb-6xW"/>
                                             <constraint firstItem="GLv-wg-Mt1" firstAttribute="leading" secondItem="LMc-ez-Njv" secondAttribute="leading" id="IWi-kd-4Pl"/>
                                             <constraint firstItem="xZc-Qy-8Hn" firstAttribute="top" secondItem="LMc-ez-Njv" secondAttribute="top" constant="16" id="JME-ey-Snl"/>
                                             <constraint firstItem="GLv-wg-Mt1" firstAttribute="top" secondItem="xZc-Qy-8Hn" secondAttribute="bottom" constant="16" id="YRl-nr-LHV"/>
@@ -149,7 +200,15 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="EdSurnameLable" destination="bhx-Fh-acW" id="4g7-gN-hvA"/>
+                        <outlet property="edNameLable" destination="uTy-Oe-xGc" id="vGG-5Q-i0I"/>
                         <outlet property="image" destination="jqK-D9-Pn8" id="NDy-Y0-1h2"/>
+                        <outlet property="nameEditButton" destination="jLX-HX-H3T" id="qS2-si-zyD"/>
+                        <outlet property="nameTextField" destination="dKJ-MH-U3i" id="pJi-XD-kom"/>
+                        <outlet property="noneEdNameLable" destination="si1-ER-77Q" id="qvs-8Q-DCD"/>
+                        <outlet property="noneEdSurnameLable" destination="Fcg-Ma-Ogj" id="hZA-dy-ljQ"/>
+                        <outlet property="surnameEditButton" destination="0nV-t4-POD" id="DGj-NR-axF"/>
+                        <outlet property="surnameTextField" destination="ISf-15-VuN" id="nti-Ad-iNf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -163,6 +222,10 @@
         <image name="MenuIcon" width="24" height="24"/>
         <image name="bottomImg" width="392" height="89"/>
         <image name="circle.fill" catalog="system" width="128" height="123"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

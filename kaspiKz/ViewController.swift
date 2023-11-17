@@ -1,8 +1,19 @@
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var nameEditButton: UIButton!
+    @IBOutlet weak var noneEdNameLable: UILabel!
+    @IBOutlet weak var edNameLable: UILabel!
+    @IBOutlet weak var surnameTextField: UITextField!
+    @IBOutlet weak var edSurnameLable: UILabel!
+    @IBOutlet weak var surnameEditButton: UIButton!
+    @IBOutlet weak var noneEdSurnameLable: UILabel!
+    @IBOutlet weak var nameTextField: UITextField!
+    
+    var boo = true
+    var boo1 = true
     override func viewDidLoad() {
         super.viewDidLoad()
         self.image.layer.borderWidth = 1
@@ -11,7 +22,52 @@ class ViewController: UIViewController {
         self.image.layer.cornerRadius = image.frame.size.height/2
         self.image.clipsToBounds = true
         
+        nameTextField.isHidden = true
+        surnameTextField.isHidden = true
+        
+        nameTextField.delegate = self
+        surnameTextField.delegate = self
+        
         AddGusture()
+    }
+    
+    @IBAction func nameEditButton(_ sender: UIButton) {
+        if boo{
+            nameEditButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+            boo = !boo
+        }else{
+            nameTextField.endEditing(true)
+            nameEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
+            boo = !boo
+        }
+        noneEdNameLable.isHidden = !noneEdNameLable.isHidden
+        edNameLable.isHidden = !edNameLable.isHidden
+        nameTextField.isHidden = !nameTextField.isHidden
+    }
+    
+    @IBAction func surnameEditButton(_ sender: UIButton) {
+        if boo1{
+            surnameEditButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+            boo1 = !boo1
+        }else{
+            surnameTextField.endEditing(true)
+            surnameEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
+            boo1 = !boo1
+        }
+        noneEdSurnameLable.isHidden = !noneEdSurnameLable.isHidden
+        edSurnameLable.isHidden = !edSurnameLable.isHidden
+        surnameTextField.isHidden = !surnameTextField.isHidden
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        if let name = textField.text{
+            if textField == nameTextField{
+                edNameLable.text = name
+            }else{
+                edSurnameLable.text = name
+            }
+            
+        }
     }
     
     func AddGusture(){
