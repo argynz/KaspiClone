@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     var boo = true
     var boo1 = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.image.layer.borderWidth = 1
@@ -83,10 +84,43 @@ class ViewController: UIViewController, UITextFieldDelegate {
         picker.allowsEditing = true
         present(picker, animated: true, completion: nil)
     }
+    
+    var uuid = UUID()
+
+    @IBAction func RandomButtonPressed(_ sender: UIButton) {
+        let url = URL(string: "https://api.unsplash.com/photos/random?client_id=OKZnWHhzHPBYwvpYXa2CZmhYePGgufl_4QgiDOb3Obo&orientation=squarish")
+        
+        let uuid = UUID()
+        self.uuid = uuid
+        
+        let task = URLSession.shared.dataTask(with: url!) { data, response, error in
+            let decoder = JSONDecoder()
+            
+            if let data = data {
+                do {
+                    let tasks = try decoder.decode(photoLink.self, from: data)
+                    if let url = NSURL(string: tasks.urls.thumb) {
+                        if let data = NSData(contentsOf: url as URL) {
+                            DispatchQueue.main.async {
+                                if self.uuid == uuid {
+                                    self.image.image = UIImage(data: data as Data)
+                                }
+                            }
+                        }
+                        
+                    }
+                } catch {
+                    print(error)
+                }
+            }
+        }
+        task.resume()
+    }
+    
 }
 
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-        
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let picking = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
         self.image.image = picking
@@ -97,4 +131,4 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true)
     }
-    }
+}
