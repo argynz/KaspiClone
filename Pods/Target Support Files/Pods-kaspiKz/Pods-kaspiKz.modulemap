@@ -1,0 +1,6 @@
+framework module Pods_kaspiKz {
+  umbrella header "Pods-kaspiKz-umbrella.h"
+
+  export *
+  module * { export * }
+}

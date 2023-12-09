@@ -9,10 +9,11 @@ class ConfirmationController: UIViewController{
     
     @IBOutlet weak var moneyLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var moneyLabel1: UILabel!
     var name = ""
     var money = ""
     var message: String?
+    
+    lazy var storyB = UIStoryboard(name: "Main", bundle: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,6 @@ class ConfirmationController: UIViewController{
         resiverNameLabel.text = name
         confirmationButton.setTitle("Подтвердить и перевести " + money, for: .normal)
         moneyLabel.text = money
-        moneyLabel1.text = money
         if message != nil{
             messageLabel.text = message
         }else{
@@ -32,23 +32,35 @@ class ConfirmationController: UIViewController{
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
             let managedObjectContext = appDelegate.persistentContainer.viewContext
 
-            // Create a new TransactionEntity object
             let transaction = Transactions(context: managedObjectContext)
             transaction.name = name
             transaction.money = money
             transaction.message = message
             transaction.date = Date()
 
-            // Attempt to save the context
+        
             do {
                 try managedObjectContext.save()
-                // Perform the segue
-                performSegue(withIdentifier: "TransactionSuccess", sender: self)
+                // Bottom Sheet
+                if let bottomSheet = storyB.instantiateViewController(withIdentifier: "TransferSuccessViewController") as? TransferSuccessViewController{
+                    if let sheet = bottomSheet.sheetPresentationController{
+                        sheet.detents = [.large(), .medium()]
+                        sheet.prefersGrabberVisible = true
+                    }
+                    bottomSheet.n = name
+                    bottomSheet.m = money
+                    self.present(bottomSheet, animated: true)
+                }
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
-                // Handle the error, such as showing an alert to the user
             }
         
-        
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "TransactionSuccess"{
+            let vc = segue.destination as! TransferSuccessViewController
+            vc.n = name
+            vc.m = money
+        }
     }
 }
