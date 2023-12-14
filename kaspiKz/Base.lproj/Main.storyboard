@@ -1354,8 +1354,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Переводы" style="editor" id="Vgd-8U-P9l"/>
                     <connections>
-                        <outlet property="money" destination="R7Z-Su-qfa" id="fEJ-Ph-lOJ"/>
-                        <outlet property="name" destination="i77-ay-8be" id="3l2-YD-LSz"/>
+                        <outlet property="moneyLabel" destination="R7Z-Su-qfa" id="joj-Ze-JCk"/>
+                        <outlet property="nameLabel" destination="i77-ay-8be" id="EZy-A8-bwp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U8f-uF-3I6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

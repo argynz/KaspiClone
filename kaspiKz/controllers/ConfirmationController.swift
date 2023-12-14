@@ -9,15 +9,17 @@ class ConfirmationController: UIViewController{
     
     @IBOutlet weak var moneyLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
-    var name = ""
-    var money = ""
+    var name = String()
+    var money = String()
     var message: String?
     
     lazy var storyB = UIStoryboard(name: "Main", bundle: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupIU()
+    }
+    func setupIU(){
         resiverNameLabel.text = name
         confirmationButton.setTitle("Подтвердить и перевести " + money, for: .normal)
         moneyLabel.text = money
@@ -37,7 +39,6 @@ class ConfirmationController: UIViewController{
             transaction.money = money
             transaction.message = message
             transaction.date = Date()
-
         
             do {
                 try managedObjectContext.save()
@@ -47,20 +48,13 @@ class ConfirmationController: UIViewController{
                         sheet.detents = [.large(), .medium()]
                         sheet.prefersGrabberVisible = true
                     }
-                    bottomSheet.n = name
-                    bottomSheet.m = money
+                    bottomSheet.name = name
+                    bottomSheet.money = money
                     self.present(bottomSheet, animated: true)
                 }
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
             }
         
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "TransactionSuccess"{
-            let vc = segue.destination as! TransferSuccessViewController
-            vc.n = name
-            vc.m = money
-        }
     }
 }
