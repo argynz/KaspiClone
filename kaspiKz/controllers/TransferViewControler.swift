@@ -41,14 +41,16 @@ class TransferViewControler: UIViewController{
         
         profileImageView.image = UIImage(data: (userDefaults.data(forKey: "PhotoData") ?? UIImage(named: "Icon")?.pngData())!)
     }
+    // ContactsButton
     @IBAction func contactsButtonPressed(_ sender: UIButton) {
         let vc = CNContactPickerViewController()
         vc.delegate = self
         present(vc, animated: true)
     }
+    
+    // Transfer Confirmation Button with error handler
     @IBAction func transferConfirmationButton(_ sender: UIButton) {
         let money = Int(moneyTextField.text!)!
-        
         if money > 100 && currentResiver.name != nil{
             moneyErrorDealer(false)
             phoneErrorDealer(false)
@@ -71,14 +73,11 @@ class TransferViewControler: UIViewController{
                 }
             }
         }
-        
-        
     }
-    
     func saveTransaction(){
-        
     }
     
+    //Error handler
     func moneyErrorDealer(_ isError: Bool){
         if isError{
             moneyTextFieldsView.layer.borderColor = UIColor.red.cgColor
@@ -110,6 +109,7 @@ class TransferViewControler: UIViewController{
         }
     }
     
+    // Message Buttons "Рахмет!" etc
     @IBAction func messageButtonPressed(_ sender: UIButton) {
         messageTextField.text = sender.currentTitle!
     }
@@ -133,7 +133,6 @@ extension TransferViewControler: UITextFieldDelegate{
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == moneyTextField{
             moneyErrorDealer(false)
-            // Construct the new text
             let currentText = textField.text ?? ""
             let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
             

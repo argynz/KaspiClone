@@ -1,6 +1,6 @@
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController{
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameEditButton: UIButton!
@@ -10,6 +10,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var edSurnameLable: UILabel!
     @IBOutlet weak var surnameEditButton: UIButton!
     @IBOutlet weak var noneEdSurnameLable: UILabel!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var nameTextField: UITextField!
     
     let userDefaults = UserDefaults.standard
@@ -26,6 +27,7 @@ class ViewController: UIViewController {
         
         nameTextField.isHidden = true
         surnameTextField.isHidden = true
+        loadingIndicator.isHidden = true
         
         nameTextField.text = userDefaults.string(forKey: "Name")
         surnameTextField.text = userDefaults.string(forKey: "Surname")
@@ -79,6 +81,11 @@ class ViewController: UIViewController {
     }
 
     @IBAction func RandomButtonPressed(_ sender: UIButton) {
+        
+        self.profileImageView.isHidden = true
+        self.loadingIndicator.isHidden = false
+        self.loadingIndicator.startAnimating()
+        
         let url = URL(string: "https://api.unsplash.com/photos/random?client_id=OKZnWHhzHPBYwvpYXa2CZmhYePGgufl_4QgiDOb3Obo&orientation=squarish")
         
         let uuid = UUID()
@@ -96,12 +103,20 @@ class ViewController: UIViewController {
                                 if self.uuid == uuid {
                                     self.profileImageView.image = UIImage(data: data as Data)
                                     self.userDefaults.set(data, forKey: "PhotoData")
+                                    self.profileImageView.isHidden = false
                                 }
+                                self.loadingIndicator.stopAnimating()
+                                self.loadingIndicator.isHidden = true
                             }
                         }
                     }
                 } catch {
                     print(error)
+                    
+                    DispatchQueue.main.async {
+                        self.loadingIndicator.isHidden = true
+                        self.loadingIndicator.stopAnimating()
+                    }
                 }
             }
         }
