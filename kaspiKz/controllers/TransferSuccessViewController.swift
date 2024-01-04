@@ -10,6 +10,9 @@ class TransferSuccessViewController: UIViewController{
         nameLabel.text = name
         moneyLabel.text = money
     }
+    func setupUI(){
+        
+    }
     @IBAction func confirmationButton(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
