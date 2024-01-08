@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7969AF96AC62A7EDB020FD84 /* Pods_kaspiKz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420FC51B8C891832EDE79351 /* Pods_kaspiKz.framework */; };
 		D52E480C2B4B2C45000A9EB9 /* TransferViewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E480B2B4B2C45000A9EB9 /* TransferViewContent.swift */; };
+		D52E480E2B4C54BA000A9EB9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E480D2B4C54BA000A9EB9 /* Constants.swift */; };
 		D54830F32AF37E7000A95FC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54830F22AF37E7000A95FC7 /* AppDelegate.swift */; };
 		D54830F52AF37E7000A95FC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54830F42AF37E7000A95FC7 /* SceneDelegate.swift */; };
 		D54830F72AF37E7000A95FC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54830F62AF37E7000A95FC7 /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 		3589A9DEF1BEA82CCEABCED4 /* Pods-kaspiKz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kaspiKz.debug.xcconfig"; path = "Target Support Files/Pods-kaspiKz/Pods-kaspiKz.debug.xcconfig"; sourceTree = "<group>"; };
 		420FC51B8C891832EDE79351 /* Pods_kaspiKz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kaspiKz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D52E480B2B4B2C45000A9EB9 /* TransferViewContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferViewContent.swift; sourceTree = "<group>"; };
+		D52E480D2B4C54BA000A9EB9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D54830EF2AF37E7000A95FC7 /* kaspiKz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kaspiKz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D54830F22AF37E7000A95FC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D54830F42AF37E7000A95FC7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				D54830F42AF37E7000A95FC7 /* SceneDelegate.swift */,
 				D54830FD2AF37E7200A95FC7 /* LaunchScreen.storyboard */,
 				D54830FB2AF37E7200A95FC7 /* Assets.xcassets */,
+				D52E480D2B4C54BA000A9EB9 /* Constants.swift */,
 			);
 			path = "supporting stuff";
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				D54830F32AF37E7000A95FC7 /* AppDelegate.swift in Sources */,
 				D5833C022B13643F0003473D /* SegmentViewControler.swift in Sources */,
 				D5E9DA4A2B085F8D00D8649E /* photoLink.swift in Sources */,
+				D52E480E2B4C54BA000A9EB9 /* Constants.swift in Sources */,
 				D5833C0C2B15CF730003473D /* ConfirmationController.swift in Sources */,
 				D54830F52AF37E7000A95FC7 /* SceneDelegate.swift in Sources */,
 			);
