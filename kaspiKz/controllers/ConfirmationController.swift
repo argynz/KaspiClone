@@ -2,9 +2,9 @@ import UIKit
 import CoreData
 
 class ConfirmationController: UIViewController{
-    var name = String()
-    var money = String()
-    var message: String?
+    private var name = String()
+    private var money = String()
+    private var message: String?
     
     private var mainView: UIView = {
         let mainView = UIView()
@@ -147,7 +147,7 @@ class ConfirmationController: UIViewController{
         return confirmationButton
     }()
     
-    lazy var storyB = UIStoryboard(name: "Main", bundle: nil)
+    private lazy var storyB = UIStoryboard(name: "Main", bundle: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -157,7 +157,7 @@ class ConfirmationController: UIViewController{
         setupSubViews()
         setupConstraints()
     }
-    func setupSubViews(){
+    private func setupSubViews(){
         view.addSubview(mainView)
         mainView.addSubview(stackView)
         stackView.addArrangedSubview(topView)
@@ -178,7 +178,7 @@ class ConfirmationController: UIViewController{
         stackView.addArrangedSubview(bottomView)
         bottomView.addSubview(confirmationButton)
     }
-    func setupConstraints(){
+    private func setupConstraints(){
         NSLayoutConstraint.activate([
             mainView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mainView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
