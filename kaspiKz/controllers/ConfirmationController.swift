@@ -2,9 +2,9 @@ import UIKit
 import CoreData
 
 class ConfirmationController: UIViewController{
-    private var name = String()
-    private var money = String()
-    private var message: String?
+    var name = String()
+    var money = String()
+    var message: String?
     
     private var mainView: UIView = {
         let mainView = UIView()
