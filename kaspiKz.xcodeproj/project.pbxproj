@@ -10,9 +10,11 @@
 		7969AF96AC62A7EDB020FD84 /* Pods_kaspiKz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420FC51B8C891832EDE79351 /* Pods_kaspiKz.framework */; };
 		D52E480C2B4B2C45000A9EB9 /* TransferViewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E480B2B4B2C45000A9EB9 /* TransferViewContent.swift */; };
 		D52E480E2B4C54BA000A9EB9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E480D2B4C54BA000A9EB9 /* Constants.swift */; };
+		D52E48102B4F4A22000A9EB9 /* ProfileViewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E480F2B4F4A22000A9EB9 /* ProfileViewContent.swift */; };
+		D52E48122B4F6BD4000A9EB9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E48112B4F6BD4000A9EB9 /* NetworkManager.swift */; };
 		D54830F32AF37E7000A95FC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54830F22AF37E7000A95FC7 /* AppDelegate.swift */; };
 		D54830F52AF37E7000A95FC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54830F42AF37E7000A95FC7 /* SceneDelegate.swift */; };
-		D54830F72AF37E7000A95FC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54830F62AF37E7000A95FC7 /* ViewController.swift */; };
+		D54830F72AF37E7000A95FC7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54830F62AF37E7000A95FC7 /* ProfileViewController.swift */; };
 		D54830FA2AF37E7000A95FC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54830F82AF37E7000A95FC7 /* Main.storyboard */; };
 		D54830FC2AF37E7200A95FC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D54830FB2AF37E7200A95FC7 /* Assets.xcassets */; };
 		D54830FF2AF37E7200A95FC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54830FD2AF37E7200A95FC7 /* LaunchScreen.storyboard */; };
@@ -33,10 +35,12 @@
 		420FC51B8C891832EDE79351 /* Pods_kaspiKz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kaspiKz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D52E480B2B4B2C45000A9EB9 /* TransferViewContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferViewContent.swift; sourceTree = "<group>"; };
 		D52E480D2B4C54BA000A9EB9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D52E480F2B4F4A22000A9EB9 /* ProfileViewContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewContent.swift; sourceTree = "<group>"; };
+		D52E48112B4F6BD4000A9EB9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D54830EF2AF37E7000A95FC7 /* kaspiKz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kaspiKz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D54830F22AF37E7000A95FC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D54830F42AF37E7000A95FC7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D54830F62AF37E7000A95FC7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D54830F62AF37E7000A95FC7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D54830F92AF37E7000A95FC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D54830FB2AF37E7200A95FC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D54830FE2AF37E7200A95FC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -76,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				D52E480B2B4B2C45000A9EB9 /* TransferViewContent.swift */,
+				D52E480F2B4F4A22000A9EB9 /* ProfileViewContent.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 				D54830FD2AF37E7200A95FC7 /* LaunchScreen.storyboard */,
 				D54830FB2AF37E7200A95FC7 /* Assets.xcassets */,
 				D52E480D2B4C54BA000A9EB9 /* Constants.swift */,
+				D52E48112B4F6BD4000A9EB9 /* NetworkManager.swift */,
 			);
 			path = "supporting stuff";
 			sourceTree = "<group>";
@@ -127,7 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				D5833C142B20C4E50003473D /* CalendarViewController.swift */,
-				D54830F62AF37E7000A95FC7 /* ViewController.swift */,
+				D54830F62AF37E7000A95FC7 /* ProfileViewController.swift */,
 				D5833C012B13643F0003473D /* SegmentViewControler.swift */,
 				D5D352B62B0A5E0E00B3F72C /* TransferViewControler.swift */,
 				D5833C0B2B15CF720003473D /* ConfirmationController.swift */,
@@ -275,11 +281,13 @@
 				D5833C0A2B153BDF0003473D /* DataModel.xcdatamodeld in Sources */,
 				D52E480C2B4B2C45000A9EB9 /* TransferViewContent.swift in Sources */,
 				D5833C042B1466110003473D /* PersonModel.swift in Sources */,
+				D52E48122B4F6BD4000A9EB9 /* NetworkManager.swift in Sources */,
 				D5833C172B22DD8A0003473D /* TransferSuccessViewController.swift in Sources */,
 				D5833C152B20C4E50003473D /* CalendarViewController.swift in Sources */,
-				D54830F72AF37E7000A95FC7 /* ViewController.swift in Sources */,
+				D54830F72AF37E7000A95FC7 /* ProfileViewController.swift in Sources */,
 				D5833C132B1F60CF0003473D /* HistoryTableViewCell.swift in Sources */,
 				D54830F32AF37E7000A95FC7 /* AppDelegate.swift in Sources */,
+				D52E48102B4F4A22000A9EB9 /* ProfileViewContent.swift in Sources */,
 				D5833C022B13643F0003473D /* SegmentViewControler.swift in Sources */,
 				D5E9DA4A2B085F8D00D8649E /* photoLink.swift in Sources */,
 				D52E480E2B4C54BA000A9EB9 /* Constants.swift in Sources */,
