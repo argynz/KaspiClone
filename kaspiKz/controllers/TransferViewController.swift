@@ -2,13 +2,17 @@ import UIKit
 import Contacts
 import ContactsUI
 
-class TransferViewControler: UIViewController{
+class TransferViewController: UIViewController{
     
     private var transferViewContent: TransferViewContent!
     private var currentResiver = PersonModel(name: nil, number: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Переводы"
+        navigationItem.style = .editor
+        navigationItem.backButtonTitle = ""
+        
         transferViewContent = TransferViewContent()
         transferViewContent.setNumberTextFieldDelegate(self)
         transferViewContent.setMoneyTextFieldDelegate(self)
@@ -36,7 +40,16 @@ class TransferViewControler: UIViewController{
         if money > 100 && currentResiver.name != nil{
             transferViewContent.moneyErrorDealer(false)
             transferViewContent.phoneErrorDealer(false)
-            performSegue(withIdentifier: "goToConfirmation", sender: self)
+            let vc = ConfirmationViewController()
+            vc.name = currentResiver.name!
+            vc.money = transferViewContent.getMoneyTextFieldText()! + " ₸"
+            let message = transferViewContent.getMessageTextFieldText() ?? ""
+            if message.isEmpty{
+                vc.message = nil
+            }else{
+                vc.message = message
+            }
+            navigationController?.pushViewController(vc, animated: true)
         }else{
             if money == 0{
                 transferViewContent.setMoneyErrorLabel("Вы не указали сумму перевода")
@@ -65,23 +78,9 @@ class TransferViewControler: UIViewController{
     @objc private func returningMessageButtonPressed(sender: UIButton) {
         transferViewContent.setMessageTextField("Возвращаю :)")
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToConfirmation"{
-            let vc = segue.destination as! ConfirmationController
-            vc.name = currentResiver.name!
-            vc.money = transferViewContent.getMoneyTextFieldText()! + " ₸"
-            let message = transferViewContent.getMessageTextFieldText() ?? ""
-            if message.isEmpty{
-                vc.message = nil
-            }else{
-                vc.message = message
-            }
-        }
-    }
 }
 
-extension TransferViewControler: UITextFieldDelegate{
+extension TransferViewController: UITextFieldDelegate{
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == transferViewContent.getMoneyTextField(){
             transferViewContent.moneyErrorDealer(false)
@@ -99,10 +98,8 @@ extension TransferViewControler: UITextFieldDelegate{
                 textToSet = newText
                 transferViewContent.setConfirmationButtonTitle("Перевести \(newText) ₸")
             }
-            
             textField.text = textToSet
             return false
-            
         }
         if textField == transferViewContent.getResiverNumberTextField(){
             transferViewContent.phoneErrorDealer(false)
@@ -112,7 +109,7 @@ extension TransferViewControler: UITextFieldDelegate{
     
 }
 
-extension TransferViewControler: CNContactPickerDelegate{
+extension TransferViewController: CNContactPickerDelegate{
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
         let name = contact.givenName + " " + String(contact.familyName.first!) + "."
         let number = contact.phoneNumbers.map{ $0.value.stringValue }
