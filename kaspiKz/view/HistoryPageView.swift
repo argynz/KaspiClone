@@ -1,6 +1,6 @@
 import UIKit
 
-class HistoryPageContent{
+class HistoryPageView{
     var segmentController: UISegmentedControl = {
         let segmentController = UISegmentedControl(items: ["ПЕРЕВОДЫ", "ИСТОРИЯ"])
         segmentController.selectedSegmentTintColor = UIColor.red

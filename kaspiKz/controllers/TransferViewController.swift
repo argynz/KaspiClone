@@ -4,7 +4,7 @@ import ContactsUI
 
 class TransferViewController: UIViewController{
     
-    private var transferViewContent: TransferViewContent!
+    private var transferPageView: TransferPageView!
     private var currentResiver = PersonModel(name: nil, number: nil)
     
     override func viewDidLoad() {
@@ -13,20 +13,20 @@ class TransferViewController: UIViewController{
         navigationItem.style = .editor
         navigationItem.backButtonTitle = ""
         
-        transferViewContent = TransferViewContent()
-        transferViewContent.setNumberTextFieldDelegate(self)
-        transferViewContent.setMoneyTextFieldDelegate(self)
-        transferViewContent.setupUI(self.view)
-        transferViewContent.setupContactButton(in: #selector(contactsButtonPressed))
-        transferViewContent.setupThanksButton(in: #selector(thanksMessageButtonPressed))
-        transferViewContent.setupForLunchButton(in: #selector(forLunchMessageButtonPressed))
-        transferViewContent.setupReturningButton(in: #selector(returningMessageButtonPressed))
-        transferViewContent.setupConfirmationButton(in: #selector(transferConfirmationButton))
+        transferPageView = TransferPageView()
+        transferPageView.setNumberTextFieldDelegate(self)
+        transferPageView.setMoneyTextFieldDelegate(self)
+        transferPageView.setupUI(self.view)
+        transferPageView.setupContactButton(in: #selector(contactsButtonPressed))
+        transferPageView.setupThanksButton(in: #selector(thanksMessageButtonPressed))
+        transferPageView.setupForLunchButton(in: #selector(forLunchMessageButtonPressed))
+        transferPageView.setupReturningButton(in: #selector(returningMessageButtonPressed))
+        transferPageView.setupConfirmationButton(in: #selector(transferConfirmationButton))
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        transferViewContent.roundProfileImage()
+        transferPageView.roundProfileImage()
     }
     
     @objc private func contactsButtonPressed() {
@@ -36,14 +36,14 @@ class TransferViewController: UIViewController{
     }
     
     @objc private func transferConfirmationButton() {
-        let money = Int(transferViewContent.getMoneyTextFieldText()!)!
+        let money = Int(transferPageView.getMoneyTextFieldText()!)!
         if money > 100 && currentResiver.name != nil{
-            transferViewContent.moneyErrorDealer(false)
-            transferViewContent.phoneErrorDealer(false)
+            transferPageView.moneyErrorDealer(false)
+            transferPageView.phoneErrorDealer(false)
             let vc = ConfirmationViewController()
-            vc.name = currentResiver.name!
-            vc.money = transferViewContent.getMoneyTextFieldText()! + " ₸"
-            let message = transferViewContent.getMessageTextFieldText() ?? ""
+            vc.name = currentResiver.name ?? "Имя Ф."
+            vc.money = transferPageView.getMoneyTextFieldText() ?? "0" + " ₸"
+            let message = transferPageView.getMessageTextFieldText() ?? ""
             if message.isEmpty{
                 vc.message = nil
             }else{
@@ -52,57 +52,57 @@ class TransferViewController: UIViewController{
             navigationController?.pushViewController(vc, animated: true)
         }else{
             if money == 0{
-                transferViewContent.setMoneyErrorLabel("Вы не указали сумму перевода")
-                transferViewContent.moneyErrorDealer(true)
+                transferPageView.setMoneyErrorLabel("Вы не указали сумму перевода")
+                transferPageView.moneyErrorDealer(true)
             }else if money < 100{
-                transferViewContent.setMoneyErrorLabel("Минимальная сумма перевода 100,00 ₸")
-                transferViewContent.moneyErrorDealer(true)
+                transferPageView.setMoneyErrorLabel("Минимальная сумма перевода 100,00 ₸")
+                transferPageView.moneyErrorDealer(true)
             }
             if currentResiver.name == nil{
-                if let text = transferViewContent.getResiverNumberTextFieldText(), text.isEmpty{
-                    transferViewContent.setPhoneErrorLabel("Вы не указали номер телефона")
-                    transferViewContent.phoneErrorDealer(true)
+                if let text = transferPageView.getResiverNumberTextFieldText(), text.isEmpty{
+                    transferPageView.setPhoneErrorLabel("Вы не указали номер телефона")
+                    transferPageView.phoneErrorDealer(true)
                 }else{
-                    transferViewContent.setPhoneErrorLabel("Проверьте правильность ввода данных")
-                    transferViewContent.phoneErrorDealer(true)
+                    transferPageView.setPhoneErrorLabel("Проверьте правильность ввода данных")
+                    transferPageView.phoneErrorDealer(true)
                 }
             }
         }
     }
     @objc private func thanksMessageButtonPressed(sender: UIButton) {
-        transferViewContent.setMessageTextField("Рахмет!")
+        transferPageView.setMessageTextField("Рахмет!")
     }
     @objc private func forLunchMessageButtonPressed(sender: UIButton) {
-        transferViewContent.setMessageTextField("За обед")
+        transferPageView.setMessageTextField("За обед")
     }
     @objc private func returningMessageButtonPressed(sender: UIButton) {
-        transferViewContent.setMessageTextField("Возвращаю :)")
+        transferPageView.setMessageTextField("Возвращаю :)")
     }
 }
 
 extension TransferViewController: UITextFieldDelegate{
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == transferViewContent.getMoneyTextField(){
-            transferViewContent.moneyErrorDealer(false)
+        if textField == transferPageView.getMoneyTextField(){
+            transferPageView.moneyErrorDealer(false)
             let currentText = textField.text ?? ""
             let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
             
             let textToSet: String
             if newText.isEmpty {
                 textToSet = "0"
-                transferViewContent.setConfirmationButtonTitle("Перевести 0 ₸")
+                transferPageView.setConfirmationButtonTitle("Перевести 0 ₸")
             } else if currentText == "0" && !string.isEmpty && string != "0" {
                 textToSet = string
-                transferViewContent.setConfirmationButtonTitle("Перевести \(string) ₸")
+                transferPageView.setConfirmationButtonTitle("Перевести \(string) ₸")
             } else {
                 textToSet = newText
-                transferViewContent.setConfirmationButtonTitle("Перевести \(newText) ₸")
+                transferPageView.setConfirmationButtonTitle("Перевести \(newText) ₸")
             }
             textField.text = textToSet
             return false
         }
-        if textField == transferViewContent.getResiverNumberTextField(){
-            transferViewContent.phoneErrorDealer(false)
+        if textField == transferPageView.getResiverNumberTextField(){
+            transferPageView.phoneErrorDealer(false)
         }
         return true
     }
@@ -111,11 +111,16 @@ extension TransferViewController: UITextFieldDelegate{
 
 extension TransferViewController: CNContactPickerDelegate{
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-        let name = contact.givenName + " " + String(contact.familyName.first!) + "."
-        let number = contact.phoneNumbers.map{ $0.value.stringValue }
-        currentResiver = PersonModel(name: name, number: number[0])
-        transferViewContent.resiverViewPopUp(currentResiver.number ?? "", currentResiver.name ?? "")
-        transferViewContent.phoneErrorDealer(false)
+        if let contacyName = contact.familyName.first{
+            let name = contact.givenName + " " + String(contacyName) + "."
+            let number = contact.phoneNumbers.map{ $0.value.stringValue }
+            currentResiver = PersonModel(name: name, number: number[0])
+            transferPageView.resiverViewPopUp(currentResiver.number ?? "", currentResiver.name ?? "")
+            transferPageView.phoneErrorDealer(false)
+        }else{
+            print("error with contact")
+        }
+        
     }
 }
 

@@ -1,6 +1,6 @@
 import UIKit
 
-class TransferViewContent {
+class TransferPageView {
     
     private let userDefaults = UserDefaults.standard
     

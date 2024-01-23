@@ -2,7 +2,7 @@ import UIKit
 
 class ProfileViewController: UIViewController{
     
-    private var profileViewContent: ProfileViewContent?
+    private var profilePageView: ProfilePageView?
     
     let userDefaults = UserDefaults.standard
     var uuid = UUID()
@@ -10,27 +10,27 @@ class ProfileViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        profileViewContent = ProfileViewContent()
-        profileViewContent?.setupUI(view)
+        profilePageView = ProfilePageView()
+        profilePageView?.setupUI(view)
         
-        profileViewContent?.nameTextField.delegate = self
-        profileViewContent?.surnameTextField.delegate = self
+        profilePageView?.nameTextField.delegate = self
+        profilePageView?.surnameTextField.delegate = self
         
-        profileViewContent?.nameEditButton.addTarget(nil, action: #selector(nameEditButton), for: .touchUpInside)
-        profileViewContent?.surnameEditButton.addTarget(nil, action: #selector(surnameEditButton), for: .touchUpInside)
-        profileViewContent?.randomImgButton.addTarget(nil, action: #selector(randomImgButtonPressed), for: .touchUpInside)
+        profilePageView?.nameEditButton.addTarget(nil, action: #selector(nameEditButton), for: .touchUpInside)
+        profilePageView?.surnameEditButton.addTarget(nil, action: #selector(surnameEditButton), for: .touchUpInside)
+        profilePageView?.randomImgButton.addTarget(nil, action: #selector(randomImgButtonPressed), for: .touchUpInside)
         AddGustures()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if let profileImageView = profileViewContent?.profileImageView {
+        if let profileImageView = profilePageView?.profileImageView {
                 profileImageView.layer.cornerRadius = profileImageView.frame.size.height / 2
             }
     }
     
     @objc func nameEditButton(_ sender: UIButton) {
-        if let contentView = profileViewContent {
+        if let contentView = profilePageView {
             handleEditButton(textField: contentView.nameTextField, button: sender)
             contentView.noneEditableNameLabel.isHidden.toggle()
             contentView.editableNameLabel.isHidden.toggle()
@@ -39,7 +39,7 @@ class ProfileViewController: UIViewController{
     }
 
     @objc func surnameEditButton(_ sender: UIButton) {
-        if let contentView = profileViewContent {
+        if let contentView = profilePageView {
             handleEditButton(textField: contentView.surnameTextField, button: sender)
             contentView.noneEditableSurnameLabel.isHidden.toggle()
             contentView.editableSurnameLabel.isHidden.toggle()
@@ -59,7 +59,7 @@ class ProfileViewController: UIViewController{
     
     func AddGustures(){
         let tap = UITapGestureRecognizer(target: self, action: #selector (ImageTapped))
-        profileViewContent?.profileImageView.addGestureRecognizer(tap)
+        profilePageView?.profileImageView.addGestureRecognizer(tap)
     }
     
     @objc func ImageTapped(){
@@ -72,9 +72,9 @@ class ProfileViewController: UIViewController{
 
     @objc func randomImgButtonPressed(_ sender: UIButton) {
         
-        profileViewContent?.profileImageView.isHidden = true
-        profileViewContent?.loadingIndicator.isHidden = false
-        profileViewContent?.loadingIndicator.startAnimating()
+        profilePageView?.profileImageView.isHidden = true
+        profilePageView?.loadingIndicator.isHidden = false
+        profilePageView?.loadingIndicator.startAnimating()
         
         let currentUuid = UUID()
         self.uuid = currentUuid
@@ -84,15 +84,15 @@ class ProfileViewController: UIViewController{
                 guard let self, self.uuid == currentUuid else { return }
                 
                 if let image = image {
-                    self.profileViewContent?.profileImageView.image = image
+                    self.profilePageView?.profileImageView.image = image
                     if let imageData = image.pngData() {
                         self.userDefaults.set(imageData, forKey: "PhotoData")
                     }
-                    self.profileViewContent?.profileImageView.isHidden = false
+                    self.profilePageView?.profileImageView.isHidden = false
                 }
                 
-                self.profileViewContent?.loadingIndicator.stopAnimating()
-                self.profileViewContent?.loadingIndicator.isHidden = true
+                self.profilePageView?.loadingIndicator.stopAnimating()
+                self.profilePageView?.loadingIndicator.isHidden = true
                 
                 if let error = error {
                     print(error)
@@ -105,11 +105,11 @@ class ProfileViewController: UIViewController{
 extension ProfileViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         if let name = textField.text{
-            if textField == profileViewContent?.nameTextField{
-                profileViewContent?.editableNameLabel.text = name
+            if textField == profilePageView?.nameTextField{
+                profilePageView?.editableNameLabel.text = name
                 userDefaults.setValue(name, forKey: "Name")
             }else{
-                profileViewContent?.editableSurnameLabel.text = name
+                profilePageView?.editableSurnameLabel.text = name
                 userDefaults.setValue(name, forKey: "Surname")
             }
         }
@@ -119,7 +119,7 @@ extension ProfileViewController: UITextFieldDelegate {
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let picking = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
-        profileViewContent?.profileImageView.image = picking
+        profilePageView?.profileImageView.image = picking
         userDefaults.set(picking?.pngData(), forKey: "PhotoData")
         
         picker.dismiss(animated: true)

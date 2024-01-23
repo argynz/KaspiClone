@@ -4,7 +4,7 @@ class CustomButton: UIButton {
     
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.tintColor = .red // Set the color as needed
+        imageView.tintColor = .red 
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -26,7 +26,6 @@ class CustomButton: UIButton {
         return label
     }()
     
-    // You can use this method to configure the look of your button
     func configure(withTitle title: String, subtitle: String?, systemIconName: String) {
         iconImageView.image = UIImage(systemName: systemIconName)
         mainTitleLabel.text = title
@@ -46,13 +45,11 @@ class CustomButton: UIButton {
         mainTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            // Constraints for iconImageView
             iconImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             iconImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             iconImageView.widthAnchor.constraint(equalToConstant: 24),
             iconImageView.heightAnchor.constraint(equalToConstant: 24),
             
-            // Constraints for mainTitleLabel
             mainTitleLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 12),
             mainTitleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             
@@ -69,17 +66,14 @@ class CustomButton: UIButton {
         customSubtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            // Constraints for iconImageView
             iconImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             iconImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             iconImageView.widthAnchor.constraint(equalToConstant: 24),
             iconImageView.heightAnchor.constraint(equalToConstant: 24),
             
-            // Constraints for mainTitleLabel
             mainTitleLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 12),
             mainTitleLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -8),
             
-            // Constraints for subtitleLabel
             customSubtitleLabel.leadingAnchor.constraint(equalTo: mainTitleLabel.leadingAnchor),
             customSubtitleLabel.topAnchor.constraint(equalTo: mainTitleLabel.bottomAnchor, constant: 2),
             customSubtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)

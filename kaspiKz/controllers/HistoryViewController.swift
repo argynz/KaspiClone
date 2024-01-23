@@ -2,7 +2,7 @@ import UIKit
 import CoreData
 
 class HistoryViewController: UIViewController{
-    private var historyPageContent: HistoryPageContent?
+    private var historyPageView: HistoryPageView?
     
     private var transactions: [Transactions] = []
     private var filteredTransactions: [Transactions] = []
@@ -13,34 +13,34 @@ class HistoryViewController: UIViewController{
     private var isDateFiltering: Bool = false
     
     private var isSearching: Bool {
-        let isSearchTextEmpty = historyPageContent?.searchTextField.text?.isEmpty ?? true
+        let isSearchTextEmpty = historyPageView?.searchTextField.text?.isEmpty ?? true
         return !isSearchTextEmpty || isDateFiltering
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        historyPageContent = HistoryPageContent()
-        historyPageContent?.setupUI(view)
+        historyPageView = HistoryPageView()
+        historyPageView?.setupUI(view)
         setupTargets()
         setupDelegates()
         fetchTransactions()
     }
     
     private func setupTargets(){
-        historyPageContent?.segmentController.addTarget(self, action: #selector(segmentControler), for: .valueChanged)
-        historyPageContent?.calendarButton.addTarget(self, action: #selector(calendarButtonTapped), for: .touchUpInside)
-        historyPageContent?.toClientKaspi.addTarget(self, action: #selector(toClientKaspiPressed), for: .touchUpInside)
+        historyPageView?.segmentController.addTarget(self, action: #selector(segmentControler), for: .valueChanged)
+        historyPageView?.calendarButton.addTarget(self, action: #selector(calendarButtonTapped), for: .touchUpInside)
+        historyPageView?.toClientKaspi.addTarget(self, action: #selector(toClientKaspiPressed), for: .touchUpInside)
     }
     
     private func setupDelegates(){
-        historyPageContent?.tableView.delegate = self
-        historyPageContent?.scrollView.delegate = self
-        historyPageContent?.tableView.dataSource = self
-        historyPageContent?.searchTextField.delegate = self
-        historyPageContent?.calendar.delegate = self
+        historyPageView?.tableView.delegate = self
+        historyPageView?.scrollView.delegate = self
+        historyPageView?.tableView.dataSource = self
+        historyPageView?.searchTextField.delegate = self
+        historyPageView?.calendar.delegate = self
         
         let dateSelection = UICalendarSelectionMultiDate(delegate: self)
-        historyPageContent?.calendar.selectionBehavior = dateSelection
+        historyPageView?.calendar.selectionBehavior = dateSelection
     }
     
     private func setupCalendarDelegates(_ calendar: UICalendarView){
@@ -59,7 +59,7 @@ class HistoryViewController: UIViewController{
         
         do {
             transactions = try managedObjectContext.fetch(fetchRequest)
-            historyPageContent?.tableView.reloadData()
+            historyPageView?.tableView.reloadData()
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
@@ -74,7 +74,7 @@ class HistoryViewController: UIViewController{
         let startDateString = dateFormatter.string(from: startDate)
         let endDateString = dateFormatter.string(from: endDate)
         
-        historyPageContent?.calendarButton.updateTitle(to: "\(startDateString) - \(endDateString)")
+        historyPageView?.calendarButton.updateTitle(to: "\(startDateString) - \(endDateString)")
     }
     private func filterTransactionsByDateRange(startDate: Date, endDate: Date) {
         isDateFiltering = true
@@ -86,7 +86,7 @@ class HistoryViewController: UIViewController{
             return transactionDate >= startDate && transactionDate <= adjustedEndDate
         }
         
-        if let searchText = historyPageContent?.searchTextField.text, !searchText.isEmpty {
+        if let searchText = historyPageView?.searchTextField.text, !searchText.isEmpty {
             filteredTransactions = filteredByDate.filter { transaction in
                 transaction.name?.lowercased().contains(searchText.lowercased()) ?? false
             }
@@ -94,21 +94,21 @@ class HistoryViewController: UIViewController{
             filteredTransactions = filteredByDate
         }
         
-        historyPageContent?.tableView.reloadData()
+        historyPageView?.tableView.reloadData()
     }
     @objc private func calendarButtonTapped(_ sender: CustomButton) {
-        setupCalendarDelegates(historyPageContent?.calendar ?? UICalendarView())
-        historyPageContent?.setupCalendar()
-        self.present(historyPageContent?.calendarViewController ?? UIViewController(), animated: true, completion: nil)
+        setupCalendarDelegates(historyPageView?.calendar ?? UICalendarView())
+        historyPageView?.setupCalendar()
+        self.present(historyPageView?.calendarViewController ?? UIViewController(), animated: true, completion: nil)
     }
     
     //MARK: SegmentControler
     @objc private func segmentControler(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex{
         case 0:
-            historyPageContent?.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+            historyPageView?.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         case 1:
-            historyPageContent?.scrollView.setContentOffset(CGPoint(x: 393, y: 0), animated: true)
+            historyPageView?.scrollView.setContentOffset(CGPoint(x: 393, y: 0), animated: true)
         default:
             print("Error")
         }
@@ -152,15 +152,15 @@ extension HistoryViewController: UITextFieldDelegate{
     }
     
     func performSearch() {
-        guard let searchText = historyPageContent?.searchTextField.text, !searchText.isEmpty else {
+        guard let searchText = historyPageView?.searchTextField.text, !searchText.isEmpty else {
             filteredTransactions = transactions
-            historyPageContent?.tableView.reloadData()
+            historyPageView?.tableView.reloadData()
             return
         }
         filteredTransactions = transactions.filter { transaction in
             return transaction.name?.lowercased().contains(searchText.lowercased()) ?? false
         }
-        historyPageContent?.tableView.reloadData()
+        historyPageView?.tableView.reloadData()
     }
 }
 
@@ -169,7 +169,7 @@ extension HistoryViewController: UIScrollViewDelegate{
         if scrollView.contentOffset.y == 0 {
             let width = scrollView.bounds.size.width
             let page = Int((scrollView.contentOffset.x + (0.5 * width)) / width)
-            historyPageContent?.segmentController.selectedSegmentIndex = page
+            historyPageView?.segmentController.selectedSegmentIndex = page
         }
     }
 }
@@ -182,7 +182,7 @@ extension HistoryViewController: UICalendarViewDelegate, UICalendarSelectionMult
             secondDate = dateComponents.date
             filterTransactionsByDateRange(startDate: firstDate ?? Date(), endDate: secondDate ?? Date())
             updateButtonTitle(startDate: firstDate ?? Date(), endDate: secondDate ?? Date())
-            historyPageContent?.calendarViewController.dismiss(animated: true)
+            historyPageView?.calendarViewController.dismiss(animated: true)
         }
     }
     

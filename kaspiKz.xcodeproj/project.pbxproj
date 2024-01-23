@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7969AF96AC62A7EDB020FD84 /* Pods_kaspiKz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420FC51B8C891832EDE79351 /* Pods_kaspiKz.framework */; };
-		D52E480C2B4B2C45000A9EB9 /* TransferViewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E480B2B4B2C45000A9EB9 /* TransferViewContent.swift */; };
+		D52E480C2B4B2C45000A9EB9 /* TransferPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E480B2B4B2C45000A9EB9 /* TransferPageView.swift */; };
 		D52E480E2B4C54BA000A9EB9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E480D2B4C54BA000A9EB9 /* Constants.swift */; };
-		D52E48102B4F4A22000A9EB9 /* ProfileViewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E480F2B4F4A22000A9EB9 /* ProfileViewContent.swift */; };
+		D52E48102B4F4A22000A9EB9 /* ProfilePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E480F2B4F4A22000A9EB9 /* ProfilePageView.swift */; };
 		D52E48122B4F6BD4000A9EB9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E48112B4F6BD4000A9EB9 /* NetworkManager.swift */; };
 		D54830F32AF37E7000A95FC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54830F22AF37E7000A95FC7 /* AppDelegate.swift */; };
 		D54830F52AF37E7000A95FC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54830F42AF37E7000A95FC7 /* SceneDelegate.swift */; };
@@ -24,7 +24,7 @@
 		D5833C132B1F60CF0003473D /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5833C122B1F60CF0003473D /* HistoryTableViewCell.swift */; };
 		D5833C152B20C4E50003473D /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5833C142B20C4E50003473D /* CalendarViewController.swift */; };
 		D5833C172B22DD8A0003473D /* TransferSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5833C162B22DD8A0003473D /* TransferSuccessViewController.swift */; };
-		D5B1117F2B54AB950011DC66 /* HistoryPageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B1117E2B54AB950011DC66 /* HistoryPageContent.swift */; };
+		D5B1117F2B54AB950011DC66 /* HistoryPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B1117E2B54AB950011DC66 /* HistoryPageView.swift */; };
 		D5B111812B54ACF00011DC66 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B111802B54ACF00011DC66 /* CustomButton.swift */; };
 		D5CACF0A2B5B1DF900D51306 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CACF092B5B1DF800D51306 /* TabBarController.swift */; };
 		D5CACF0C2B5B221600D51306 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CACF0B2B5B221600D51306 /* ShopViewController.swift */; };
@@ -36,9 +36,9 @@
 		0311EA99DE702ACDA1061585 /* Pods-kaspiKz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kaspiKz.release.xcconfig"; path = "Target Support Files/Pods-kaspiKz/Pods-kaspiKz.release.xcconfig"; sourceTree = "<group>"; };
 		3589A9DEF1BEA82CCEABCED4 /* Pods-kaspiKz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kaspiKz.debug.xcconfig"; path = "Target Support Files/Pods-kaspiKz/Pods-kaspiKz.debug.xcconfig"; sourceTree = "<group>"; };
 		420FC51B8C891832EDE79351 /* Pods_kaspiKz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kaspiKz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D52E480B2B4B2C45000A9EB9 /* TransferViewContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferViewContent.swift; sourceTree = "<group>"; };
+		D52E480B2B4B2C45000A9EB9 /* TransferPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferPageView.swift; sourceTree = "<group>"; };
 		D52E480D2B4C54BA000A9EB9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		D52E480F2B4F4A22000A9EB9 /* ProfileViewContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewContent.swift; sourceTree = "<group>"; };
+		D52E480F2B4F4A22000A9EB9 /* ProfilePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageView.swift; sourceTree = "<group>"; };
 		D52E48112B4F6BD4000A9EB9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D54830EF2AF37E7000A95FC7 /* kaspiKz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kaspiKz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D54830F22AF37E7000A95FC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,7 +54,7 @@
 		D5833C122B1F60CF0003473D /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryTableViewCell.swift; path = kaspiKz/controllers/HistoryTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		D5833C142B20C4E50003473D /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = kaspiKz/CalendarViewController.swift; sourceTree = SOURCE_ROOT; };
 		D5833C162B22DD8A0003473D /* TransferSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSuccessViewController.swift; sourceTree = "<group>"; };
-		D5B1117E2B54AB950011DC66 /* HistoryPageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPageContent.swift; sourceTree = "<group>"; };
+		D5B1117E2B54AB950011DC66 /* HistoryPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPageView.swift; sourceTree = "<group>"; };
 		D5B111802B54ACF00011DC66 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		D5CACF092B5B1DF800D51306 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D5CACF0B2B5B221600D51306 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
@@ -85,9 +85,9 @@
 		D52E480A2B4B2C2F000A9EB9 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				D52E480B2B4B2C45000A9EB9 /* TransferViewContent.swift */,
-				D52E480F2B4F4A22000A9EB9 /* ProfileViewContent.swift */,
-				D5B1117E2B54AB950011DC66 /* HistoryPageContent.swift */,
+				D52E480B2B4B2C45000A9EB9 /* TransferPageView.swift */,
+				D52E480F2B4F4A22000A9EB9 /* ProfilePageView.swift */,
+				D5B1117E2B54AB950011DC66 /* HistoryPageView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -287,7 +287,7 @@
 			files = (
 				D5D352B72B0A5E0E00B3F72C /* TransferViewController.swift in Sources */,
 				D5833C0A2B153BDF0003473D /* DataModel.xcdatamodeld in Sources */,
-				D52E480C2B4B2C45000A9EB9 /* TransferViewContent.swift in Sources */,
+				D52E480C2B4B2C45000A9EB9 /* TransferPageView.swift in Sources */,
 				D5833C042B1466110003473D /* PersonModel.swift in Sources */,
 				D52E48122B4F6BD4000A9EB9 /* NetworkManager.swift in Sources */,
 				D5833C172B22DD8A0003473D /* TransferSuccessViewController.swift in Sources */,
@@ -298,12 +298,12 @@
 				D5CACF0A2B5B1DF900D51306 /* TabBarController.swift in Sources */,
 				D54830F32AF37E7000A95FC7 /* AppDelegate.swift in Sources */,
 				D5CACF0C2B5B221600D51306 /* ShopViewController.swift in Sources */,
-				D52E48102B4F4A22000A9EB9 /* ProfileViewContent.swift in Sources */,
+				D52E48102B4F4A22000A9EB9 /* ProfilePageView.swift in Sources */,
 				D5833C022B13643F0003473D /* HistoryViewController.swift in Sources */,
 				D5E9DA4A2B085F8D00D8649E /* photoLink.swift in Sources */,
 				D52E480E2B4C54BA000A9EB9 /* Constants.swift in Sources */,
 				D5833C0C2B15CF730003473D /* ConfirmationViewController.swift in Sources */,
-				D5B1117F2B54AB950011DC66 /* HistoryPageContent.swift in Sources */,
+				D5B1117F2B54AB950011DC66 /* HistoryPageView.swift in Sources */,
 				D54830F52AF37E7000A95FC7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
