@@ -1,6 +1,6 @@
 import UIKit
 
-class ProfileViewContent {
+class ProfilePageView {
     
     private let userDefaults = UserDefaults.standard
     

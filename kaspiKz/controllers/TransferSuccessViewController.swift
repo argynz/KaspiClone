@@ -115,6 +115,7 @@ class TransferSuccessViewController: UIViewController{
         setupSubViews()
         setupConstraints()
     }
+    
     private func setupSubViews(){
         view.addSubview(mainView)
         mainView.addSubview(topView)
@@ -129,8 +130,8 @@ class TransferSuccessViewController: UIViewController{
         bottomView.addSubview(addToFavLabel)
         bottomView.addSubview(addToFavSwitch)
         mainView.addSubview(backButton)
-        
     }
+    
     private func setupConstraints(){
         NSLayoutConstraint.activate([
             mainView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -185,6 +186,7 @@ class TransferSuccessViewController: UIViewController{
             backButton.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -16)
         ])
     }
+    
     @objc private func confirmationButtonPressed() {
         self.dismiss(animated: true)
     }
