@@ -11,24 +11,23 @@
 		D52E480C2B4B2C45000A9EB9 /* TransferPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E480B2B4B2C45000A9EB9 /* TransferPageView.swift */; };
 		D52E480E2B4C54BA000A9EB9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E480D2B4C54BA000A9EB9 /* Constants.swift */; };
 		D52E48102B4F4A22000A9EB9 /* ProfilePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E480F2B4F4A22000A9EB9 /* ProfilePageView.swift */; };
-		D52E48122B4F6BD4000A9EB9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E48112B4F6BD4000A9EB9 /* NetworkManager.swift */; };
 		D54830F32AF37E7000A95FC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54830F22AF37E7000A95FC7 /* AppDelegate.swift */; };
 		D54830F52AF37E7000A95FC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54830F42AF37E7000A95FC7 /* SceneDelegate.swift */; };
 		D54830F72AF37E7000A95FC7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54830F62AF37E7000A95FC7 /* ProfileViewController.swift */; };
 		D54830FC2AF37E7200A95FC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D54830FB2AF37E7200A95FC7 /* Assets.xcassets */; };
 		D54830FF2AF37E7200A95FC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54830FD2AF37E7200A95FC7 /* LaunchScreen.storyboard */; };
+		D56A96852B6EE86C0084FE63 /* NetworkManager in Frameworks */ = {isa = PBXBuildFile; productRef = D56A96842B6EE86C0084FE63 /* NetworkManager */; };
 		D5833C022B13643F0003473D /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5833C012B13643F0003473D /* HistoryViewController.swift */; };
 		D5833C042B1466110003473D /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5833C032B1466110003473D /* PersonModel.swift */; };
 		D5833C0A2B153BDF0003473D /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D5833C082B153BDF0003473D /* DataModel.xcdatamodeld */; };
 		D5833C0C2B15CF730003473D /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5833C0B2B15CF720003473D /* ConfirmationViewController.swift */; };
 		D5833C132B1F60CF0003473D /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5833C122B1F60CF0003473D /* HistoryTableViewCell.swift */; };
-		D5833C152B20C4E50003473D /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5833C142B20C4E50003473D /* CalendarViewController.swift */; };
 		D5833C172B22DD8A0003473D /* TransferSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5833C162B22DD8A0003473D /* TransferSuccessViewController.swift */; };
 		D5B1117F2B54AB950011DC66 /* HistoryPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B1117E2B54AB950011DC66 /* HistoryPageView.swift */; };
 		D5B111812B54ACF00011DC66 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B111802B54ACF00011DC66 /* CustomButton.swift */; };
 		D5CACF0A2B5B1DF900D51306 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CACF092B5B1DF800D51306 /* TabBarController.swift */; };
-		D5CACF0C2B5B221600D51306 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CACF0B2B5B221600D51306 /* ShopViewController.swift */; };
 		D5D352B72B0A5E0E00B3F72C /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D352B62B0A5E0E00B3F72C /* TransferViewController.swift */; };
+		D5E964662B5FFB1C005B2169 /* ShopScreen in Frameworks */ = {isa = PBXBuildFile; productRef = D5E964652B5FFB1C005B2169 /* ShopScreen */; };
 		D5E9DA4A2B085F8D00D8649E /* photoLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E9DA492B085F8D00D8649E /* photoLink.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +38,6 @@
 		D52E480B2B4B2C45000A9EB9 /* TransferPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferPageView.swift; sourceTree = "<group>"; };
 		D52E480D2B4C54BA000A9EB9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D52E480F2B4F4A22000A9EB9 /* ProfilePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageView.swift; sourceTree = "<group>"; };
-		D52E48112B4F6BD4000A9EB9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D54830EF2AF37E7000A95FC7 /* kaspiKz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kaspiKz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D54830F22AF37E7000A95FC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D54830F42AF37E7000A95FC7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,12 +50,10 @@
 		D5833C092B153BDF0003473D /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		D5833C0B2B15CF720003473D /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
 		D5833C122B1F60CF0003473D /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryTableViewCell.swift; path = kaspiKz/controllers/HistoryTableViewCell.swift; sourceTree = SOURCE_ROOT; };
-		D5833C142B20C4E50003473D /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = kaspiKz/CalendarViewController.swift; sourceTree = SOURCE_ROOT; };
 		D5833C162B22DD8A0003473D /* TransferSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferSuccessViewController.swift; sourceTree = "<group>"; };
 		D5B1117E2B54AB950011DC66 /* HistoryPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPageView.swift; sourceTree = "<group>"; };
 		D5B111802B54ACF00011DC66 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		D5CACF092B5B1DF800D51306 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		D5CACF0B2B5B221600D51306 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		D5D352B62B0A5E0E00B3F72C /* TransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewController.swift; sourceTree = "<group>"; };
 		D5E9DA492B085F8D00D8649E /* photoLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = photoLink.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,7 +63,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5E964662B5FFB1C005B2169 /* ShopScreen in Frameworks */,
 				7969AF96AC62A7EDB020FD84 /* Pods_kaspiKz.framework in Frameworks */,
+				D56A96852B6EE86C0084FE63 /* NetworkManager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,7 +129,6 @@
 				D54830FD2AF37E7200A95FC7 /* LaunchScreen.storyboard */,
 				D54830FB2AF37E7200A95FC7 /* Assets.xcassets */,
 				D52E480D2B4C54BA000A9EB9 /* Constants.swift */,
-				D52E48112B4F6BD4000A9EB9 /* NetworkManager.swift */,
 				D5B111802B54ACF00011DC66 /* CustomButton.swift */,
 			);
 			path = "supporting stuff";
@@ -140,13 +137,11 @@
 		D5833C062B153B7D0003473D /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D5833C142B20C4E50003473D /* CalendarViewController.swift */,
 				D54830F62AF37E7000A95FC7 /* ProfileViewController.swift */,
 				D5833C012B13643F0003473D /* HistoryViewController.swift */,
 				D5D352B62B0A5E0E00B3F72C /* TransferViewController.swift */,
 				D5833C0B2B15CF720003473D /* ConfirmationViewController.swift */,
 				D5833C162B22DD8A0003473D /* TransferSuccessViewController.swift */,
-				D5CACF0B2B5B221600D51306 /* ShopViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -189,6 +184,10 @@
 			dependencies = (
 			);
 			name = kaspiKz;
+			packageProductDependencies = (
+				D5E964652B5FFB1C005B2169 /* ShopScreen */,
+				D56A96842B6EE86C0084FE63 /* NetworkManager */,
+			);
 			productName = kaspiKz;
 			productReference = D54830EF2AF37E7000A95FC7 /* kaspiKz.app */;
 			productType = "com.apple.product-type.application";
@@ -289,15 +288,12 @@
 				D5833C0A2B153BDF0003473D /* DataModel.xcdatamodeld in Sources */,
 				D52E480C2B4B2C45000A9EB9 /* TransferPageView.swift in Sources */,
 				D5833C042B1466110003473D /* PersonModel.swift in Sources */,
-				D52E48122B4F6BD4000A9EB9 /* NetworkManager.swift in Sources */,
 				D5833C172B22DD8A0003473D /* TransferSuccessViewController.swift in Sources */,
-				D5833C152B20C4E50003473D /* CalendarViewController.swift in Sources */,
 				D54830F72AF37E7000A95FC7 /* ProfileViewController.swift in Sources */,
 				D5B111812B54ACF00011DC66 /* CustomButton.swift in Sources */,
 				D5833C132B1F60CF0003473D /* HistoryTableViewCell.swift in Sources */,
 				D5CACF0A2B5B1DF900D51306 /* TabBarController.swift in Sources */,
 				D54830F32AF37E7000A95FC7 /* AppDelegate.swift in Sources */,
-				D5CACF0C2B5B221600D51306 /* ShopViewController.swift in Sources */,
 				D52E48102B4F4A22000A9EB9 /* ProfilePageView.swift in Sources */,
 				D5833C022B13643F0003473D /* HistoryViewController.swift in Sources */,
 				D5E9DA4A2B085F8D00D8649E /* photoLink.swift in Sources */,
@@ -521,6 +517,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D56A96842B6EE86C0084FE63 /* NetworkManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkManager;
+		};
+		D5E964652B5FFB1C005B2169 /* ShopScreen */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ShopScreen;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		D5833C082B153BDF0003473D /* DataModel.xcdatamodeld */ = {

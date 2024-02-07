@@ -1,21 +1,13 @@
 import Foundation
 import UIKit
 
-struct PhotoLink: Decodable {
-    let urls: Urls
-    struct Urls: Decodable {
-        let thumb: String
-    }
-}
+public class RandomPhotoService {
+    public static let shared = RandomPhotoService()
 
-class NetworkManager {
-    static let shared = NetworkManager() // Singleton instance
-
-    private let baseURL = "https://api.unsplash.com/photos/random"
     private let accessKey = "OKZnWHhzHPBYwvpYXa2CZmhYePGgufl_4QgiDOb3Obo"
     
-    func fetchRandomImage(completion: @escaping (UIImage?, Error?) -> Void) {
-        guard let url = URL(string: "\(baseURL)?client_id=\(accessKey)&orientation=squarish") else {
+    public func fetchRandomImage(completion: @escaping (UIImage?, Error?) -> Void) {
+        guard let url = URL(string: "\(APIEndpoint.photo.rawValue)?client_id=\(accessKey)&orientation=squarish") else {
             completion(nil, NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"]))
             return
         }
