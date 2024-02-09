@@ -42,7 +42,7 @@ class TransferViewController: UIViewController{
             transferPageView.phoneErrorDealer(false)
             let vc = ConfirmationViewController()
             vc.name = currentResiver.name ?? "Имя Ф."
-            vc.money = transferPageView.getMoneyTextFieldText() ?? "0" + " ₸"
+            vc.money = (transferPageView.getMoneyTextFieldText() ?? "0") + " ₸"
             let message = transferPageView.getMessageTextFieldText() ?? ""
             if message.isEmpty{
                 vc.message = nil

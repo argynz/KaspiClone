@@ -1,0 +1,6 @@
+import Foundation
+
+public struct Meme: Codable {
+    public let title: String
+    public let url: String
+}

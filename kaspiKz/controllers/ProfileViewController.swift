@@ -1,4 +1,5 @@
 import UIKit
+import NetworkManager
 
 class ProfileViewController: UIViewController{
     
@@ -79,7 +80,7 @@ class ProfileViewController: UIViewController{
         let currentUuid = UUID()
         self.uuid = currentUuid
         
-        NetworkManager.shared.fetchRandomImage { [weak self] image, error in
+        NetworkManager.RandomPhotoService.shared.fetchRandomImage { [weak self] image, error in
             DispatchQueue.main.async {
                 guard let self, self.uuid == currentUuid else { return }
                 

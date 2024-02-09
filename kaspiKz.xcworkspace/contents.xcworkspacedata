@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:SPM/NetworkManager">
+   </FileRef>
+   <FileRef
+      location = "group:SPM/ShopScreen">
+   </FileRef>
+   <FileRef
       location = "group:kaspiKz.xcodeproj">
    </FileRef>
    <FileRef
