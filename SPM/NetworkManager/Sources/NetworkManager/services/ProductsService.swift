@@ -1,9 +1,7 @@
 import Foundation
 
-public class ProductsService{
-    public static let sharedProduct = ProductsService()
-    
-    public func fetchProducts(completion: @escaping (Result<[Product], Error>) -> Void) {
+class ProductsService{
+    func fetchProducts(completion: @escaping (Result<[Product], Error>) -> Void) {
         guard let url = URL(string: APIEndpoint.products.rawValue) else {
             print("invalidURL")
             return

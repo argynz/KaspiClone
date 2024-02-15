@@ -11,9 +11,9 @@ class ProductViewModel: ObservableObject{
     var price: String
     var actualPrice: Int
     let segments = ["3 Мес", "6 Мес", "12 Мес", "24 Мес"]
-    let product: NetworkManager.Product
+    let product: Product
     
-    init(product: NetworkManager.Product) {
+    init(product: Product) {
         self.product = product
         self.price = String(Int(product.price))
         self.actualPrice = Int(product.price * ((100 - product.discountPercentage) / 100))

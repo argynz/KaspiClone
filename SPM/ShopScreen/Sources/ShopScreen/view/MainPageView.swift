@@ -2,11 +2,12 @@ import SwiftUI
 import NetworkManager
 
 public struct MainPageView: View {
-    @StateObject private var mainPageViewModel = MainPageViewModel()
+    @ObservedObject public var mainPageViewModel = MainPageViewModel()
     @StateObject private var maximizedImageViewModel = MaximizedImageViewModel()
     
-    public init() {
+    public init(mainPageViewModel: MainPageViewModel) {
         UIScrollView.appearance().bounces = false
+        self.mainPageViewModel = mainPageViewModel
     }
     
     public var body: some View {
@@ -15,15 +16,9 @@ public struct MainPageView: View {
             ScrollView(){
                 VStack(spacing: 10) {
                     advertsView
-                        .onAppear(){
-                            mainPageViewModel.fetchMemes()
-                        }
                     middleView
                     samsungAd
                     productsView
-                        .onAppear {
-                            mainPageViewModel.fetchProducts()
-                        }
                 }
             }
             .background(Colors.backgroundGrayColor)

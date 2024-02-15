@@ -7,7 +7,7 @@ struct ProductPageView: View {
     @StateObject private var productViewModel: ProductViewModel
     @StateObject private var maximizedImageViewModel = MaximizedImageViewModel()
     
-    init(product: NetworkManager.Product) {
+    init(product: Product) {
         _productViewModel = StateObject(wrappedValue: ProductViewModel(product: product))
     }
     

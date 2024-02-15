@@ -8,7 +8,7 @@ class ConfirmationViewController: UIViewController{
     
     private var mainView: UIView = {
         let mainView = UIView()
-        mainView.backgroundColor = Constants.lightGrayColor
+        mainView.backgroundColor = Colors.lightGrayColor
         mainView.translatesAutoresizingMaskIntoConstraints = false
         return mainView
     }()
@@ -117,7 +117,7 @@ class ConfirmationViewController: UIViewController{
         let messageDiscriptionLabel = UILabel()
         messageDiscriptionLabel.text = "Сообщениу получателю"
         messageDiscriptionLabel.font = UIFont.systemFont(ofSize: 12)
-        messageDiscriptionLabel.textColor = Constants.mediumGrayColor
+        messageDiscriptionLabel.textColor = Colors.mediumGrayColor
         messageDiscriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         return messageDiscriptionLabel
     }()
@@ -139,7 +139,7 @@ class ConfirmationViewController: UIViewController{
         let confirmationButton = UIButton()
         confirmationButton.setTitle("Подтвердить и перевести " + money, for: .normal)
         confirmationButton.setTitleColor(.white, for: .normal)
-        confirmationButton.backgroundColor = Constants.customBlueColor
+        confirmationButton.backgroundColor = Colors.customBlueColor
         confirmationButton.layer.cornerRadius = 6
         confirmationButton.clipsToBounds = true
         confirmationButton.addTarget(nil, action: #selector(confirmationButtonPressed), for: .touchUpInside)
@@ -256,7 +256,7 @@ class ConfirmationViewController: UIViewController{
         ])
     }
     @objc private func confirmationButtonPressed() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        guard let appDelegate = UIApplication.shared.delegate as? AppPersistenceContainerProvider else { return }
         let managedObjectContext = appDelegate.persistentContainer.viewContext
         
         let transaction = Transactions(context: managedObjectContext)

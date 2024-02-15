@@ -15,7 +15,7 @@ class TransferPageView {
         let confirmationButton = UIButton()
         confirmationButton.setTitle("Перевести 0 ₸", for: .normal)
         confirmationButton.setTitleColor(.white, for: .normal)
-        confirmationButton.backgroundColor = Constants.customBlueColor
+        confirmationButton.backgroundColor = Colors.customBlueColor
         confirmationButton.layer.cornerRadius = 6
         confirmationButton.clipsToBounds = true
         confirmationButton.translatesAutoresizingMaskIntoConstraints = false
@@ -25,11 +25,11 @@ class TransferPageView {
         let button = UIButton()
         button.setTitle("Рахмет!", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        button.backgroundColor = Constants.lightGrayColor
+        button.backgroundColor = Colors.lightGrayColor
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 14
         button.layer.borderWidth = 0.5
-        button.layer.borderColor = Constants.mediumGrayColor.cgColor
+        button.layer.borderColor = Colors.mediumGrayColor.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -38,11 +38,11 @@ class TransferPageView {
         let button = UIButton()
         button.setTitle("За обед", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        button.backgroundColor = Constants.lightGrayColor
+        button.backgroundColor = Colors.lightGrayColor
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 14
         button.layer.borderWidth = 0.5
-        button.layer.borderColor = Constants.mediumGrayColor.cgColor
+        button.layer.borderColor = Colors.mediumGrayColor.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -51,11 +51,11 @@ class TransferPageView {
         let button = UIButton()
         button.setTitle("Возвращаю :)", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        button.backgroundColor = Constants.lightGrayColor
+        button.backgroundColor = Colors.lightGrayColor
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 14
         button.layer.borderWidth = 0.5
-        button.layer.borderColor = Constants.mediumGrayColor.cgColor
+        button.layer.borderColor = Colors.mediumGrayColor.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -149,13 +149,13 @@ class TransferPageView {
         
         phoneTextFieldView.backgroundColor = .white
         
-        mainView.backgroundColor = Constants.lightGrayColor
+        mainView.backgroundColor = Colors.lightGrayColor
         
-        resiverView.backgroundColor = Constants.customGoldColor
+        resiverView.backgroundColor = Colors.customGoldColor
         
-        moneyErrorView.backgroundColor = Constants.lightGrayColor
+        moneyErrorView.backgroundColor = Colors.lightGrayColor
         
-        phoneErrorView.backgroundColor = Constants.lightGrayColor
+        phoneErrorView.backgroundColor = Colors.lightGrayColor
         
         segmentController.selectedSegmentTintColor = UIColor.red
         segmentController.backgroundColor = .white
@@ -176,7 +176,7 @@ class TransferPageView {
         segmentController.setTitleTextAttributes(selectedFontAttributes, for: .selected)
         
         let messageTextFieldplaceholderAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: Constants.mediumGrayColor,
+            .foregroundColor: Colors.mediumGrayColor,
             .font: UIFont.systemFont(ofSize: 16)
         ]
         messageTextField.attributedPlaceholder = NSAttributedString(string: "Сообщение получателю", attributes: messageTextFieldplaceholderAttributes)
@@ -188,7 +188,7 @@ class TransferPageView {
         moneyTextField.textAlignment = .center
         
         let resiverNumberTextFieldplaceholderAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: Constants.mediumGrayColor,
+            .foregroundColor: Colors.mediumGrayColor,
             .font: UIFont.systemFont(ofSize: 16)
         ]
         resiverNumberTextField.attributedPlaceholder = NSAttributedString(string: "Телефон получателя", attributes: resiverNumberTextFieldplaceholderAttributes)
@@ -200,7 +200,7 @@ class TransferPageView {
         
         commissionLabel.text = "Комиссия 0 ₸"
         commissionLabel.font = UIFont.systemFont(ofSize: 14)
-        commissionLabel.textColor = Constants.mediumGrayColor
+        commissionLabel.textColor = Colors.mediumGrayColor
         
         moneyErrorLabel.font = UIFont.systemFont(ofSize: 12)
         moneyErrorLabel.textColor = .red

@@ -1,13 +1,9 @@
 import Foundation
 import UIKit
 
-public class RandomPhotoService {
-    public static let shared = RandomPhotoService()
-
-    private let accessKey = "OKZnWHhzHPBYwvpYXa2CZmhYePGgufl_4QgiDOb3Obo"
-    
-    public func fetchRandomImage(completion: @escaping (UIImage?, Error?) -> Void) {
-        guard let url = URL(string: "\(APIEndpoint.photo.rawValue)?client_id=\(accessKey)&orientation=squarish") else {
+class RandomPhotoService {
+    func fetchRandomImage(completion: @escaping (UIImage?, Error?) -> Void) {
+        guard let url = URL(string: "\(APIEndpoint.photo.rawValue)?client_id=\(APIEndpoint.photoAccessKey.rawValue)&orientation=squarish") else {
             completion(nil, NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"]))
             return
         }

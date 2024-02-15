@@ -35,7 +35,7 @@ class HistoryPageView{
     
     private var mainView: UIView = {
         let mainView = UIView()
-        mainView.backgroundColor = Constants.lightGrayColor
+        mainView.backgroundColor = Colors.lightGrayColor
         mainView.translatesAutoresizingMaskIntoConstraints = false
         return mainView
     }()
@@ -114,7 +114,7 @@ class HistoryPageView{
     var searchTextField: UITextField = {
         let searchTextField  = UITextField()
         let searchTextFieldplaceholderAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: Constants.mediumGrayColor,
+            .foregroundColor: Colors.mediumGrayColor,
             .font: UIFont.systemFont(ofSize: 16)
         ]
         searchTextField.attributedPlaceholder = NSAttributedString(string: "Имя, сумма, сообщение", attributes: searchTextFieldplaceholderAttributes)
@@ -141,7 +141,7 @@ class HistoryPageView{
         calendar.backgroundColor = .white
         calendar.frame = CGRect(x: 45, y: 200, width: 303, height: 303)
         calendar.layer.borderWidth = 1
-        calendar.layer.borderColor = Constants.mediumGrayColor.cgColor
+        calendar.layer.borderColor = Colors.mediumGrayColor.cgColor
         calendar.layer.cornerRadius = 8
         calendar.tintColor = .red
         calendar.locale = .current

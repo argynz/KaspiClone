@@ -4,17 +4,17 @@
 import PackageDescription
 
 let package = Package(
-    name: "NetworkManager",
+    name: "TransferScreen",
+    platforms: [
+        .iOS(.v16)
+    ],
     products: [
         .library(
-            name: "NetworkManager",
-            targets: ["NetworkManager"]),
-    ],
-    dependencies: [
-            // List of dependencies
+            name: "TransferScreen",
+            targets: ["TransferScreen"]),
     ],
     targets: [
         .target(
-            name: "NetworkManager"),
+            name: "TransferScreen"),
     ]
 )

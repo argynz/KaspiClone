@@ -1,5 +1,5 @@
 import Foundation
 
-public struct MemeList: Codable {
+struct MemeList: Codable {
     let memes: [Meme]
 }

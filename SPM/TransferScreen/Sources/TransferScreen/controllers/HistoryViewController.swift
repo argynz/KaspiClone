@@ -1,7 +1,7 @@
 import UIKit
 import CoreData
 
-class HistoryViewController: UIViewController{
+public class HistoryViewController: UIViewController{
     private var historyPageView: HistoryPageView?
     
     private var transactions: [Transactions] = []
@@ -17,7 +17,7 @@ class HistoryViewController: UIViewController{
         return !isSearchTextEmpty || isDateFiltering
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         historyPageView = HistoryPageView()
         historyPageView?.setupUI(view)
@@ -53,7 +53,7 @@ class HistoryViewController: UIViewController{
     
     //MARK: FetchTransactions from CoreData
     private func fetchTransactions() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        guard let appDelegate = UIApplication.shared.delegate as? AppPersistenceContainerProvider else { return }
         let managedObjectContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<Transactions>(entityName: "Transactions")
         
@@ -122,15 +122,15 @@ class HistoryViewController: UIViewController{
 }
 
 extension HistoryViewController: UITableViewDataSource, UITableViewDelegate{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return isSearching ? filteredTransactions.count : transactions.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 128
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifier, for: indexPath) as? HistoryTableViewCell else{
             fatalError("The table view could dequeue a Cell")
         }
@@ -141,13 +141,13 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate{
 }
 
 extension HistoryViewController: UITextFieldDelegate{
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         performSearch()
         return true
     }
     
-    func textFieldDidChangeSelection(_ textField: UITextField) {
+    public func textFieldDidChangeSelection(_ textField: UITextField) {
         performSearch()
     }
     
@@ -165,7 +165,7 @@ extension HistoryViewController: UITextFieldDelegate{
 }
 
 extension HistoryViewController: UIScrollViewDelegate{
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y == 0 {
             let width = scrollView.bounds.size.width
             let page = Int((scrollView.contentOffset.x + (0.5 * width)) / width)
@@ -175,7 +175,7 @@ extension HistoryViewController: UIScrollViewDelegate{
 }
 
 extension HistoryViewController: UICalendarViewDelegate, UICalendarSelectionMultiDateDelegate{
-    func multiDateSelection(_ selection: UICalendarSelectionMultiDate, didSelectDate dateComponents: DateComponents) {
+    public func multiDateSelection(_ selection: UICalendarSelectionMultiDate, didSelectDate dateComponents: DateComponents) {
         if firstDate == nil{
             firstDate = dateComponents.date
         }else{
@@ -186,7 +186,11 @@ extension HistoryViewController: UICalendarViewDelegate, UICalendarSelectionMult
         }
     }
     
-    func multiDateSelection(_ selection: UICalendarSelectionMultiDate, didDeselectDate dateComponents: DateComponents) {
+    public func multiDateSelection(_ selection: UICalendarSelectionMultiDate, didDeselectDate dateComponents: DateComponents) {
         firstDate = nil
     }
+}
+
+public protocol AppPersistenceContainerProvider {
+    var persistentContainer: NSPersistentContainer { get }
 }

@@ -2,7 +2,7 @@ import SwiftUI
 import NetworkManager
 
 struct ProductCardView: View {
-    var product: NetworkManager.Product
+    var product: Product
     
     var body: some View {
         NavigationLink(destination: ProductPageView(product: product)){
