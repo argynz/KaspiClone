@@ -11,9 +11,9 @@ public struct MainPageView: View {
     }
     
     public var body: some View {
-        VStack(spacing: 0){
+        VStack(spacing: 0) {
             searchBarView
-            ScrollView(){
+            ScrollView {
                 VStack(spacing: 10) {
                     advertsView
                     middleView
@@ -25,8 +25,8 @@ public struct MainPageView: View {
             .navigationBarHidden(true)
         }
         .overlay {
-            ZStack{
-                if maximizedImageViewModel.showImageViewer{
+            ZStack {
+                if maximizedImageViewModel.showImageViewer {
                     MaximizedImageView()
                 }
             }
@@ -34,7 +34,7 @@ public struct MainPageView: View {
         .environmentObject(maximizedImageViewModel)
     }
     
-    private var searchBarView: some View{
+    private var searchBarView: some View {
         HStack {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(Colors.mediumGrayColor)
@@ -55,7 +55,7 @@ public struct MainPageView: View {
             )
     }
     
-    private var advertsView: some View{
+    private var advertsView: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 12) {
                 ForEach(0..<mainPageViewModel.memes.count, id: \.self) { index in
@@ -69,7 +69,7 @@ public struct MainPageView: View {
                                 .fill(Colors.lightGrayColor)
                                 .frame(width: 165, height: 100)
                                 .cornerRadius(10)
-                                .overlay{
+                                .overlay {
                                     if let url = URL(string: mainPageViewModel.memes[index].url) {
                                         AsyncImage(url: url) { image in
                                             image.resizable()
@@ -97,15 +97,15 @@ public struct MainPageView: View {
         .background(Color.white)
     }
     
-    private var middleView: some View{
-        VStack(spacing: 1){
+    private var middleView: some View {
+        VStack(spacing: 1) {
             buttonsView
             magnumView
             creditsView
         }
     }
     
-    private var buttonsView: some View{
+    private var buttonsView: some View {
         VStack {
             LazyVGrid(columns: mainPageViewModel.gridItems, spacing: 20) {
                 CustomButtonsView(iconName: "QR", label: "Kaspi QR")
@@ -122,7 +122,7 @@ public struct MainPageView: View {
         .background(Color.white)
     }
     
-    private var magnumView: some View{
+    private var magnumView: some View {
         HStack {
             Image("Magnum")
                 .resizable()
@@ -149,9 +149,9 @@ public struct MainPageView: View {
         .background(Color.white)
     }
     
-    private var creditsView: some View{
-        ScrollView(.horizontal, showsIndicators: false){
-            LazyVGrid(columns: mainPageViewModel.creditColumns, alignment: .leading){
+    private var creditsView: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            LazyVGrid(columns: mainPageViewModel.creditColumns, alignment: .leading) {
                 CreditView(iconName: "gold", title: "Kaspi Gold", discription: "Бесплатные переводы")
                 CreditView(iconName: "kredit", title: "Кредит на Покупки", discription: "Кредит или рассрочка 0%")
                 CreditView(iconName: "KN", title: "Кредит наличными", discription: "До 1 млн ₸ на Kaspi Gold")
@@ -164,21 +164,21 @@ public struct MainPageView: View {
         .background(Color.white)
     }
     
-    private var samsungAd: some View{
+    private var samsungAd: some View {
         Image("samsungAd")
             .resizable()
             .frame(height: 120)
     }
     
-    private var productsView: some View{
-        VStack(alignment: .leading, spacing: 0){
+    private var productsView: some View {
+        VStack(alignment: .leading, spacing: 0) {
             Text("Вас могут заинтересовать")
                 .font(.system(size: 18))
                 .bold()
                 .padding(.vertical, 18)
                 .padding(.leading, 18)
-            ScrollView(.vertical, showsIndicators: false){
-                LazyVGrid(columns: mainPageViewModel.productsColumns, spacing: 20){
+            ScrollView(.vertical, showsIndicators: false) {
+                LazyVGrid(columns: mainPageViewModel.productsColumns, spacing: 20) {
                     ForEach(0..<mainPageViewModel.products.count, id: \.self) { index in
                         ProductCardView(product: mainPageViewModel.products[index])
                     }

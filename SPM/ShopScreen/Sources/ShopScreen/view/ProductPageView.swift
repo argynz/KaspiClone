@@ -12,9 +12,9 @@ struct ProductPageView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0){
+        VStack(spacing: 0) {
             searchBarView
-            ScrollView(){
+            ScrollView {
                 VStack(spacing: 10) {
                     topView
                     bonusLabelView
@@ -25,8 +25,8 @@ struct ProductPageView: View {
             .background(Colors.backgroundGrayColor)
         }
         .overlay {
-            ZStack{
-                if maximizedImageViewModel.showImageViewer{
+            ZStack {
+                if maximizedImageViewModel.showImageViewer {
                     MaximizedImageView()
                 }
             }
@@ -34,8 +34,8 @@ struct ProductPageView: View {
         .environmentObject(maximizedImageViewModel)
     }
     
-    private var searchBarView: some View{
-        HStack(spacing: 0){
+    private var searchBarView: some View {
+        HStack(spacing: 0) {
             Button(action: {
                 presentationMode.wrappedValue.dismiss()
             }) {
@@ -71,8 +71,8 @@ struct ProductPageView: View {
         )
     }
     
-    private var topView: some View{
-        VStack(spacing: 1){
+    private var topView: some View {
+        VStack(spacing: 1) {
             picView
             titleView
             priceView
@@ -80,10 +80,10 @@ struct ProductPageView: View {
     }
     
     private var picView: some View {
-        ZStack(alignment: .leading){
+        ZStack(alignment: .leading) {
             VStack {
-                TabView(selection: $productViewModel.selectedTab){
-                    ForEach(0..<productViewModel.product.images.count, id: \.self){ index in
+                TabView(selection: $productViewModel.selectedTab) {
+                    ForEach(0..<productViewModel.product.images.count, id: \.self) { index in
                         Button(action: {
                             maximizedImageViewModel.showImageViewer.toggle()
                             maximizedImageViewModel.images = productViewModel.product.images
@@ -91,7 +91,7 @@ struct ProductPageView: View {
                         }, label: {
                             Rectangle()
                                 .fill(Color.white)
-                                .overlay{
+                                .overlay {
                                     if let url = URL(string: productViewModel.product.images[index]) {
                                         AsyncImage(url: url) { image in
                                             image
@@ -123,7 +123,7 @@ struct ProductPageView: View {
             .frame(height: 375)
             .background(Color.white)
             .padding(.top, 8)
-            VStack(spacing: 6){
+            VStack(spacing: 6) {
                 Image("0012")
                     .resizable()
                     .frame(width: 60, height: 32)
@@ -136,8 +136,8 @@ struct ProductPageView: View {
     }
     
     private var titleView: some View {
-        VStack{
-            HStack{
+        VStack {
+            HStack {
                 Text(productViewModel.product.title)
                     .font(.system(size: 18))
                     .padding(.leading, 18)
@@ -151,8 +151,8 @@ struct ProductPageView: View {
                     .padding(.top, 10)
                     .padding(.trailing, 18)
             }
-            HStack{
-                HStack(spacing:2){
+            HStack {
+                HStack(spacing: 2) {
                     Image("star")
                         .frame(width: 13, height: 13)
                     Image("star")
@@ -178,7 +178,7 @@ struct ProductPageView: View {
     }
     
     private var priceView: some View {
-        HStack(spacing:3){
+        HStack(spacing: 3) {
             Text(String(productViewModel.actualPrice)+" $")
                 .font(.system(size: 18))
                 .bold()
@@ -211,12 +211,12 @@ struct ProductPageView: View {
     }
     
     private var bonusLabelView: some View {
-        VStack{
+        VStack {
             Rectangle()
                 .fill(Colors.customDarkGreenColor)
                 .frame(height: 54)
                 .overlay(
-                    HStack(){
+                    HStack {
                         Circle()
                             .fill(Color.white)
                             .frame(width: 30, height: 30)
@@ -225,7 +225,7 @@ struct ProductPageView: View {
                                     .font(.system(size: 12))
                                     .foregroundColor(Colors.customDarkGreenColor)
                             )
-                        VStack(alignment: .leading){
+                        VStack(alignment: .leading) {
                             Text("5% Бонусов при оплате Kaspi Gold!")
                                 .font(.system(size: 12))
                                 .foregroundColor(Color.white)
@@ -250,7 +250,7 @@ struct ProductPageView: View {
     }
     
     private var installmentView: some View {
-        HStack{
+        HStack {
             Text("В рассрочку")
                 .font(.system(size: 12))
                 .padding(.leading, 18)
@@ -283,7 +283,7 @@ struct ProductPageView: View {
     }
     
     private var shopsView: some View {
-        VStack(spacing: 1){
+        VStack(spacing: 1) {
             deliveryView
             SellerCardView()
             SellerCardView()
@@ -294,7 +294,7 @@ struct ProductPageView: View {
     }
     
     private var deliveryView: some View {
-        HStack(spacing: 14){
+        HStack(spacing: 14) {
             Text("Доставка")
                 .font(.system(size: 14))
                 .padding(.leading, 18)
@@ -334,8 +334,8 @@ struct ProductPageView: View {
     }
     
     private var bottomView: some View {
-        VStack(spacing: 8){
-            HStack{
+        VStack(spacing: 8) {
+            HStack {
                 Text("Еще 5 продавца")
                     .font(.system(size: 15))
                     .bold()
@@ -345,7 +345,7 @@ struct ProductPageView: View {
             }
             .padding(18)
             
-            HStack(spacing: 8){
+            HStack(spacing: 8) {
                 Button(action: {
                 }) {
                     Text("Оформить сейчас")

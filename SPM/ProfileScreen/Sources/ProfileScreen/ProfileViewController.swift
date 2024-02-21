@@ -1,8 +1,7 @@
 import UIKit
 import NetworkManager
 
-public class ProfileViewController: UIViewController{
-    
+public class ProfileViewController: UIViewController {
     private var profilePageView: ProfilePageView?
     private let networkManager = NetworkManagerImpl()
     
@@ -21,7 +20,7 @@ public class ProfileViewController: UIViewController{
         profilePageView?.nameEditButton.addTarget(nil, action: #selector(nameEditButton), for: .touchUpInside)
         profilePageView?.surnameEditButton.addTarget(nil, action: #selector(surnameEditButton), for: .touchUpInside)
         profilePageView?.randomImgButton.addTarget(nil, action: #selector(randomImgButtonPressed), for: .touchUpInside)
-        AddGustures()
+        addGustures()
     }
     
     public override func viewDidLayoutSubviews() {
@@ -59,12 +58,12 @@ public class ProfileViewController: UIViewController{
         textField.isHidden = !textField.isHidden
     }
     
-    func AddGustures(){
-        let tap = UITapGestureRecognizer(target: self, action: #selector (ImageTapped))
+    func addGustures() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector (imageTapped))
         profilePageView?.profileImageView.addGestureRecognizer(tap)
     }
     
-    @objc func ImageTapped(){
+    @objc func imageTapped() {
         let picker = UIImagePickerController()
         picker.sourceType = .photoLibrary
         picker.delegate = self
@@ -106,11 +105,11 @@ public class ProfileViewController: UIViewController{
 
 extension ProfileViewController: UITextFieldDelegate {
     public func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        if let name = textField.text{
-            if textField == profilePageView?.nameTextField{
+        if let name = textField.text {
+            if textField == profilePageView?.nameTextField {
                 profilePageView?.editableNameLabel.text = name
                 userDefaults.setValue(name, forKey: "Name")
-            }else{
+            } else {
                 profilePageView?.editableSurnameLabel.text = name
                 userDefaults.setValue(name, forKey: "Surname")
             }
@@ -118,8 +117,9 @@ extension ProfileViewController: UITextFieldDelegate {
     }
 }
 
-extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    public func imagePickerController(_ picker: UIImagePickerController,
+                                      didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         let picking = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
         profilePageView?.profileImageView.image = picking
         userDefaults.set(picking?.pngData(), forKey: "PhotoData")

@@ -1,5 +1,5 @@
 import UIKit
-class TransferSuccessViewController: UIViewController{
+class TransferSuccessViewController: UIViewController {
     var name = String()
     var money = String()
     
@@ -116,7 +116,7 @@ class TransferSuccessViewController: UIViewController{
         setupConstraints()
     }
     
-    private func setupSubViews(){
+    private func setupSubViews() {
         view.addSubview(mainView)
         mainView.addSubview(topView)
         topView.addSubview(transferDiscriptionLabel)
@@ -132,7 +132,7 @@ class TransferSuccessViewController: UIViewController{
         mainView.addSubview(backButton)
     }
     
-    private func setupConstraints(){
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             mainView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mainView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),

@@ -5,13 +5,13 @@ struct SellerCardView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            HStack{
+            HStack {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("KORKEM KZ")
                         .font(.system(size: 18))
                     
                     HStack(spacing: 4) {
-                        ForEach(0..<5){_ in 
+                        ForEach(0..<5) {_ in
                             Image("starGreen")
                         }
                         
@@ -32,7 +32,7 @@ struct SellerCardView: View {
                         .cornerRadius(4)
                 }
             }
-            HStack{
+            HStack {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(productViewModel.price + " $")
                         .font(.system(size: 13))
@@ -54,7 +54,7 @@ struct SellerCardView: View {
                 
                 Spacer()
                 
-                VStack{
+                VStack {
                     HStack {
                         Image("box")
                         Text("Postomat, ").font(.system(size: 12)) +

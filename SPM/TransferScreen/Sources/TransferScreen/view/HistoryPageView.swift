@@ -1,6 +1,6 @@
 import UIKit
 
-class HistoryPageView{
+class HistoryPageView {
     var segmentController: UISegmentedControl = {
         let segmentController = UISegmentedControl(items: ["ПЕРЕВОДЫ", "ИСТОРИЯ"])
         segmentController.selectedSegmentTintColor = UIColor.red
@@ -68,7 +68,9 @@ class HistoryPageView{
     
     private var toCard: CustomButton = {
         let customButton = CustomButton(frame: .zero)
-        customButton.configure(withTitle: "Карта другого банка", subtitle: "С карты на карту", systemIconName: "creditcard.circle")
+        customButton.configure(withTitle: "Карта другого банка", 
+                               subtitle: "С карты на карту",
+                               systemIconName: "creditcard.circle")
         customButton.backgroundColor = .white
         customButton.translatesAutoresizingMaskIntoConstraints = false
         return customButton
@@ -76,7 +78,9 @@ class HistoryPageView{
     
     private var internationalTransfer: CustomButton = {
         let customButton = CustomButton(frame: .zero)
-        customButton.configure(withTitle: "Международные переводы", subtitle: "По номеру карты или телефона ", systemIconName: "globe")
+        customButton.configure(withTitle: "Международные переводы", 
+                               subtitle: "По номеру карты или телефона ",
+                               systemIconName: "globe")
         customButton.backgroundColor = .white
         customButton.translatesAutoresizingMaskIntoConstraints = false
         return customButton
@@ -117,14 +121,16 @@ class HistoryPageView{
             .foregroundColor: Colors.mediumGrayColor,
             .font: UIFont.systemFont(ofSize: 16)
         ]
-        searchTextField.attributedPlaceholder = NSAttributedString(string: "Имя, сумма, сообщение", attributes: searchTextFieldplaceholderAttributes)
+        searchTextField.attributedPlaceholder = NSAttributedString(string: "Имя, сумма, сообщение", 
+                                                                   attributes: searchTextFieldplaceholderAttributes)
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
         return searchTextField
     }()
     
     lazy var calendarButton: CustomButton = {
         let customButton = CustomButton(frame: .zero)
-        customButton.configure(withTitle: convertDateToDayMonthString(date: Date()), subtitle: nil, systemIconName: "calendar")
+        customButton.configure(withTitle: convertDateToDayMonthString(date: Date()), 
+                               subtitle: nil, systemIconName: "calendar")
         customButton.backgroundColor = .white
         customButton.translatesAutoresizingMaskIntoConstraints = false
         return customButton
@@ -156,7 +162,7 @@ class HistoryPageView{
         return tableView
     }()
     
-    private func setupSubviews(_ containerView: UIView){
+    private func setupSubviews(_ containerView: UIView) {
         containerView.addSubview(segmentController)
         containerView.addSubview(scrollView)
         scrollView.addSubview(mainView)
@@ -174,17 +180,19 @@ class HistoryPageView{
         transferHistoryView.addSubview(tableView)
     }
     
-    private func setupConstraints(_ containerView: UIView){
+    private func setupConstraints(_ containerView: UIView) {
         NSLayoutConstraint.activate([
             scrollView.bottomAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.trailingAnchor),
             scrollView.heightAnchor.constraint(equalToConstant: 618),
             
-            segmentController.topAnchor.constraint(equalTo:containerView.safeAreaLayoutGuide.topAnchor, constant: 8),
-            segmentController.leadingAnchor.constraint(equalTo:containerView.safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            segmentController.trailingAnchor.constraint(equalTo:containerView.safeAreaLayoutGuide.trailingAnchor, constant: -8),
-            segmentController.bottomAnchor.constraint(equalTo:scrollView.topAnchor, constant: -8),
+            segmentController.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor, constant: 8),
+            segmentController.leadingAnchor.constraint(
+                equalTo: containerView.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            segmentController.trailingAnchor.constraint(
+                equalTo: containerView.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            segmentController.bottomAnchor.constraint(equalTo: scrollView.topAnchor, constant: -8),
             
             mainView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             mainView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -215,7 +223,7 @@ class HistoryPageView{
             
             searchImg.heightAnchor.constraint(equalToConstant: 21),
             searchImg.widthAnchor.constraint(equalToConstant: 20),
-            searchImg.leadingAnchor.constraint(equalTo: searchBarView.leadingAnchor,constant: 8),
+            searchImg.leadingAnchor.constraint(equalTo: searchBarView.leadingAnchor, constant: 8),
             searchImg.centerYAnchor.constraint(equalTo: searchBarView.centerYAnchor),
             
             searchTextField.centerYAnchor.constraint(equalTo: searchBarView.centerYAnchor),
@@ -229,7 +237,7 @@ class HistoryPageView{
             tableView.leadingAnchor.constraint(equalTo: transferHistoryView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: transferHistoryView.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: transferHistoryView.bottomAnchor),
-            tableView.topAnchor.constraint(equalTo: calendarButton.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: calendarButton.bottomAnchor)
         ])
     }
     
@@ -238,7 +246,7 @@ class HistoryPageView{
         setupConstraints(containerView)
     }
     
-    func setupCalendar(){
+    func setupCalendar() {
         let someView = UIView()
         someView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         calendarViewController.popoverPresentationController?.sourceView = self.calendarButton

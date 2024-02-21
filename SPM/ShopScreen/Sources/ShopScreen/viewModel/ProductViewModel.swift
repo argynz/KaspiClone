@@ -1,7 +1,7 @@
 import SwiftUI
 import NetworkManager
 
-class ProductViewModel: ObservableObject{
+class ProductViewModel: ObservableObject {
     @Published var searchText = ""
     @Published var selectedMonthIndex = 1
     @Published var selectedTab = 0

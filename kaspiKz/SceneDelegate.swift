@@ -9,7 +9,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let mainViewModel = MainPageViewModel()
     let networkManager = NetworkManagerImpl()
     
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    func scene(_ scene: UIScene, 
+               willConnectTo session: UISceneSession,
+               options connectionOptions: UIScene.ConnectionOptions) {
         networkFetch()
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
@@ -18,8 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.makeKeyAndVisible()
     }
     
-    func networkFetch(){
-        networkManager.fetchMemes{ [weak self] result in
+    func networkFetch() {
+        networkManager.fetchMemes { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let fetchedMemes):
@@ -30,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
         
-        networkManager.fetchProducts{ [weak self] result in
+        networkManager.fetchProducts { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let fetchedProducts):
@@ -42,4 +44,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
 }
-

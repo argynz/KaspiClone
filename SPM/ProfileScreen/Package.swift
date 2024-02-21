@@ -11,16 +11,16 @@ let package = Package(
     products: [
         .library(
             name: "ProfileScreen",
-            targets: ["ProfileScreen"]),
+            targets: ["ProfileScreen"])
     ],
     dependencies: [
-        .package(name: "NetworkManager",path: "/SPM/NetworkManager"),
+        .package(name: "NetworkManager", path: "/SPM/NetworkManager")
     ],
     targets: [
         .target(
             name: "ProfileScreen",
             dependencies: [
                 "NetworkManager"
-            ]),
+            ])
     ]
 )

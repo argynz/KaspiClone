@@ -11,11 +11,11 @@ public class NetworkManagerImpl {
     }
     
     public func fetchProducts (completion: @escaping (Result<[Product], Error>) -> Void) {
-        productsService.fetchProducts (completion: completion)
+        productsService.fetchProducts(completion: completion)
     }
     
     public func fetchMemes (completion: @escaping (Result<[Meme], Error>) -> Void) {
-        randomMemeService.fetchMemes (completion: completion)
+        randomMemeService.fetchMemes(completion: completion)
     }
     
     public func fetchRandomImage (completion: @escaping (UIImage?, Error?) -> Void) {

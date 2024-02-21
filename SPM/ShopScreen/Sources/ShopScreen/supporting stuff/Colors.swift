@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-struct Colors{
+struct Colors {
     static let backgroundGrayColor = Color(red: 241/255.0, green: 241/255.0, blue: 241/255.0)
     static let lightGrayColor = Color(red: 217/255.0, green: 217/255.0, blue: 217/255.0)
     static let mediumGrayColor = Color(red: 162/255.0, green: 162/255.0, blue: 162/255.0)

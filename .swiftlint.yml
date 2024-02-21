@@ -1,0 +1,6 @@
+disabled_rules:
+ - type_body_length
+ - function_body_length
+ - trailing_whitespace
+ - file_length
+ - multiple_closures_with_trailing_closure

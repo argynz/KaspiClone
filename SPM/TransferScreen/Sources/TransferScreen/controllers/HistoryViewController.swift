@@ -1,14 +1,14 @@
 import UIKit
 import CoreData
 
-public class HistoryViewController: UIViewController{
+public class HistoryViewController: UIViewController {
     private var historyPageView: HistoryPageView?
     
     private var transactions: [Transactions] = []
     private var filteredTransactions: [Transactions] = []
     
-    private var firstDate: Date? = nil
-    private var secondDate: Date? = nil
+    private var firstDate: Date?
+    private var secondDate: Date?
     
     private var isDateFiltering: Bool = false
     
@@ -26,13 +26,13 @@ public class HistoryViewController: UIViewController{
         fetchTransactions()
     }
     
-    private func setupTargets(){
+    private func setupTargets() {
         historyPageView?.segmentController.addTarget(self, action: #selector(segmentControler), for: .valueChanged)
         historyPageView?.calendarButton.addTarget(self, action: #selector(calendarButtonTapped), for: .touchUpInside)
         historyPageView?.toClientKaspi.addTarget(self, action: #selector(toClientKaspiPressed), for: .touchUpInside)
     }
     
-    private func setupDelegates(){
+    private func setupDelegates() {
         historyPageView?.tableView.delegate = self
         historyPageView?.scrollView.delegate = self
         historyPageView?.tableView.dataSource = self
@@ -43,7 +43,7 @@ public class HistoryViewController: UIViewController{
         historyPageView?.calendar.selectionBehavior = dateSelection
     }
     
-    private func setupCalendarDelegates(_ calendar: UICalendarView){
+    private func setupCalendarDelegates(_ calendar: UICalendarView) {
         firstDate = nil
         calendar.delegate = self
         
@@ -51,9 +51,12 @@ public class HistoryViewController: UIViewController{
         calendar.selectionBehavior = dateSelection
     }
     
-    //MARK: FetchTransactions from CoreData
+    // MARK: FetchTransactions from CoreData
     private func fetchTransactions() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppPersistenceContainerProvider else { return }
+        guard let appDelegate = UIApplication.shared.delegate as? AppPersistenceContainerProvider else {
+            print("Error: AppDelegate does not conform to AppPersistenceContainerProvider")
+            return
+        }
         let managedObjectContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<Transactions>(entityName: "Transactions")
         
@@ -65,7 +68,7 @@ public class HistoryViewController: UIViewController{
         }
     }
     
-    //MARK: Calendar
+    // MARK: Calendar
     private func updateButtonTitle(startDate: Date, endDate: Date) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMMM"
@@ -102,9 +105,9 @@ public class HistoryViewController: UIViewController{
         self.present(historyPageView?.calendarViewController ?? UIViewController(), animated: true, completion: nil)
     }
     
-    //MARK: SegmentControler
+    // MARK: SegmentControler
     @objc private func segmentControler(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex{
+        switch sender.selectedSegmentIndex {
         case 0:
             historyPageView?.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         case 1:
@@ -114,14 +117,14 @@ public class HistoryViewController: UIViewController{
         }
     }
     
-    //MARK: To Kaspi Client Button Pressed
+    // MARK: To Kaspi Client Button Pressed
     @objc private func toClientKaspiPressed(_ sender: UISegmentedControl) {
-        let vc = TransferViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let viewC = TransferViewController()
+        navigationController?.pushViewController(viewC, animated: true)
     }
 }
 
-extension HistoryViewController: UITableViewDataSource, UITableViewDelegate{
+extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return isSearching ? filteredTransactions.count : transactions.count
     }
@@ -131,7 +134,9 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifier, for: indexPath) as? HistoryTableViewCell else{
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: HistoryTableViewCell.identifier,
+            for: indexPath) as? HistoryTableViewCell else {
             fatalError("The table view could dequeue a Cell")
         }
         let transaction = isSearching ? filteredTransactions[indexPath.row] : transactions[indexPath.row]
@@ -140,7 +145,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate{
     }
 }
 
-extension HistoryViewController: UITextFieldDelegate{
+extension HistoryViewController: UITextFieldDelegate {
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         performSearch()
@@ -164,8 +169,8 @@ extension HistoryViewController: UITextFieldDelegate{
     }
 }
 
-extension HistoryViewController: UIScrollViewDelegate{
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+extension HistoryViewController: UIScrollViewDelegate {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y == 0 {
             let width = scrollView.bounds.size.width
             let page = Int((scrollView.contentOffset.x + (0.5 * width)) / width)
@@ -174,11 +179,12 @@ extension HistoryViewController: UIScrollViewDelegate{
     }
 }
 
-extension HistoryViewController: UICalendarViewDelegate, UICalendarSelectionMultiDateDelegate{
-    public func multiDateSelection(_ selection: UICalendarSelectionMultiDate, didSelectDate dateComponents: DateComponents) {
-        if firstDate == nil{
+extension HistoryViewController: UICalendarViewDelegate, UICalendarSelectionMultiDateDelegate {
+    public func multiDateSelection(_ selection: UICalendarSelectionMultiDate,
+                                   didSelectDate dateComponents: DateComponents) {
+        if firstDate == nil {
             firstDate = dateComponents.date
-        }else{
+        } else {
             secondDate = dateComponents.date
             filterTransactionsByDateRange(startDate: firstDate ?? Date(), endDate: secondDate ?? Date())
             updateButtonTitle(startDate: firstDate ?? Date(), endDate: secondDate ?? Date())
@@ -186,7 +192,8 @@ extension HistoryViewController: UICalendarViewDelegate, UICalendarSelectionMult
         }
     }
     
-    public func multiDateSelection(_ selection: UICalendarSelectionMultiDate, didDeselectDate dateComponents: DateComponents) {
+    public func multiDateSelection(_ selection: UICalendarSelectionMultiDate, 
+                                   didDeselectDate dateComponents: DateComponents) {
         firstDate = nil
     }
 }

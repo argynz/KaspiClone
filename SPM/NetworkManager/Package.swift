@@ -8,13 +8,13 @@ let package = Package(
     products: [
         .library(
             name: "NetworkManager",
-            targets: ["NetworkManager"]),
+            targets: ["NetworkManager"])
     ],
     dependencies: [
             // List of dependencies
     ],
     targets: [
         .target(
-            name: "NetworkManager"),
+            name: "NetworkManager")
     ]
 )

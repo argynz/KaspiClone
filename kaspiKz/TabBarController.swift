@@ -5,7 +5,7 @@ import TransferScreen
 import ProfileScreen
 import NetworkManager
 
-class TabBarController: UITabBarController{
+class TabBarController: UITabBarController {
     var observer: Any?
     var mainPageViewModel = MainPageViewModel()
     
@@ -26,22 +26,33 @@ class TabBarController: UITabBarController{
         setupTabs()
         selectedIndex = 2
         
-        observer = NotificationCenter.default.addObserver(forName: .didChangeTabBarVisibility, object: nil, queue: .main) { [weak self] notification in
+        observer = NotificationCenter.default.addObserver(forName: .didChangeTabBarVisibility, 
+                                                          object: nil, queue: .main) { [weak self] notification in
             if let isTabBarHidden = notification.object as? Bool {
                 self?.tabBar.isHidden = isTabBarHidden
             }
         }
     }
     
-    private func setupTabs(){
-        let main = createNavBar(with: "Главная", and: UIImage(systemName: "house"), vc: UIHostingController(rootView: MainPageView(mainPageViewModel: mainPageViewModel)))
-        let transfer = createNavBar(with: "Переводы", and: UIImage(systemName: "repeat"), vc: HistoryViewController())
-        let profile = createNavBar(with: "Профиль", and: UIImage(systemName: "person.circle"), vc: ProfileViewController())
+    private func setupTabs() {
+        let main = createNavBar(with: "Главная", 
+                                and: UIImage(systemName: "house"),
+                                viewC: UIHostingController(
+                                    rootView: MainPageView(
+                                        mainPageViewModel: mainPageViewModel)))
+        let transfer = createNavBar(with: "Переводы", 
+                                    and: UIImage(systemName: "repeat"),
+                                    viewC: HistoryViewController())
+        let profile = createNavBar(with: "Профиль",
+                                   and: UIImage(systemName: "person.circle"),
+                                   viewC: ProfileViewController())
         setViewControllers([main, transfer, profile], animated: false)
     }
     
-    private func createNavBar(with title: String, and image: UIImage?, vc: UIViewController) -> UINavigationController {
-        let nav = UINavigationController(rootViewController: vc)
+    private func createNavBar(with title: String, 
+                              and image: UIImage?,
+                              viewC: UIViewController) -> UINavigationController {
+        let nav = UINavigationController(rootViewController: viewC)
         nav.tabBarItem.title = title
         nav.tabBarItem.image = image
         nav.viewControllers.first?.navigationItem.title = title

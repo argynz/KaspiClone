@@ -11,10 +11,10 @@ let package = Package(
     products: [
         .library(
             name: "TransferScreen",
-            targets: ["TransferScreen"]),
+            targets: ["TransferScreen"])
     ],
     targets: [
         .target(
-            name: "TransferScreen"),
+            name: "TransferScreen")
     ]
 )

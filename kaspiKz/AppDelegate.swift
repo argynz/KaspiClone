@@ -1,20 +1,19 @@
 import UIKit
 import CoreData
+import TransferScreen
 
 @main
 public class AppDelegate: UIResponder, UIApplicationDelegate, AppPersistenceContainerProvider {
-
-
-
-    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    public func application(_ application: UIApplication, didFinishLaunchingWithOptions
+                            launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true
     }
 
     // MARK: UISceneSession Lifecycle
 
-    public func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
+    public func application(_ application: UIApplication, configurationForConnecting 
+                            connectingSceneSession: UISceneSession, 
+                            options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
@@ -23,7 +22,7 @@ public class AppDelegate: UIResponder, UIApplicationDelegate, AppPersistenceCont
 
     lazy public var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "DataModel")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
@@ -44,8 +43,4 @@ public class AppDelegate: UIResponder, UIApplicationDelegate, AppPersistenceCont
             }
         }
     }
-}
-
-public protocol AppPersistenceContainerProvider {
-    var persistentContainer: NSPersistentContainer { get }
 }

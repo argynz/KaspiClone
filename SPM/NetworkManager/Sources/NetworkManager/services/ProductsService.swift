@@ -1,12 +1,12 @@
 import Foundation
 
-class ProductsService{
+class ProductsService {
     func fetchProducts(completion: @escaping (Result<[Product], Error>) -> Void) {
         guard let url = URL(string: APIEndpoint.products.rawValue) else {
             print("invalidURL")
             return
         }
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url) {(data, _, error) in
             if let error {
                 completion(.failure(error))
                 return
