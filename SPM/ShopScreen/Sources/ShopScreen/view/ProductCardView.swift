@@ -1,5 +1,6 @@
 import SwiftUI
 import NetworkManager
+import Const
 
 struct ProductCardView: View {
     var product: Product
@@ -33,7 +34,7 @@ struct ProductCardView: View {
                     .foregroundColor(Color.black)
                 Text(product.category)
                     .font(.system(size: 12))
-                    .foregroundColor(Colors.mediumGrayColor)
+                    .foregroundColor(Color.mediumGrayColor)
                 HStack {
                     Text(String(Int(product.price*((100-product.discountPercentage)/100)))+" $")
                         .font(.system(size: 16))

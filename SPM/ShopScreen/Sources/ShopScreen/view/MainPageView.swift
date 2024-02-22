@@ -1,5 +1,6 @@
 import SwiftUI
 import NetworkManager
+import Const
 
 public struct MainPageView: View {
     @ObservedObject public var mainPageViewModel = MainPageViewModel()
@@ -21,7 +22,7 @@ public struct MainPageView: View {
                     productsView
                 }
             }
-            .background(Colors.backgroundGrayColor)
+            .background(Color.backgroundGrayColor)
             .navigationBarHidden(true)
         }
         .overlay {
@@ -37,20 +38,20 @@ public struct MainPageView: View {
     private var searchBarView: some View {
         HStack {
             Image(systemName: "magnifyingglass")
-                .foregroundColor(Colors.mediumGrayColor)
+                .foregroundColor(Color.mediumGrayColor)
                 .padding(.horizontal, 8)
             TextField("Поиск по Kaspi.kz", text: $mainPageViewModel.searchText)
                 .foregroundColor(Color(red: 158/255.0, green: 158/255.0, blue: 158/255.0))
                 .padding(.vertical, 10)
         }
-        .background(Colors.backgroundGrayColor)
+        .background(Color.backgroundGrayColor)
         .cornerRadius(10)
         .padding(.vertical, 8)
         .padding(.horizontal, 18)
         .overlay(
                 Rectangle()
                     .frame(height: 1)
-                    .foregroundColor(Colors.lightGrayColor), 
+                    .foregroundColor(Color.lightGrayColor), 
                 alignment: .bottom
             )
     }
@@ -66,7 +67,7 @@ public struct MainPageView: View {
                             maximizedImageViewModel.selectedTab = index
                         }, label: {
                             Rectangle()
-                                .fill(Colors.lightGrayColor)
+                                .fill(Color.lightGrayColor)
                                 .frame(width: 165, height: 100)
                                 .cornerRadius(10)
                                 .overlay {
@@ -135,13 +136,13 @@ public struct MainPageView: View {
                     .font(.system(size: 15))
                 Text("Продукты питания с бесплатной доставкой")
                     .font(.system(size: 12))
-                    .foregroundColor(Colors.mediumGrayColor)
+                    .foregroundColor(Color.mediumGrayColor)
             }
             
             Spacer()
             
             Image(systemName: "chevron.right")
-                .foregroundColor(Colors.lightGrayColor)
+                .foregroundColor(Color.lightGrayColor)
         }
         .frame(height: 64)
         .padding(.leading, 8)

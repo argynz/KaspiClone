@@ -1,5 +1,6 @@
 import UIKit
 import CoreData
+import Const
 
 public class HistoryViewController: UIViewController {
     private var historyPageView: HistoryPageView?
@@ -23,6 +24,9 @@ public class HistoryViewController: UIViewController {
         historyPageView?.setupUI(view)
         setupTargets()
         setupDelegates()
+    }
+    
+    public override func viewWillAppear(_ animated: Bool) {
         fetchTransactions()
     }
     
@@ -53,12 +57,11 @@ public class HistoryViewController: UIViewController {
     
     // MARK: FetchTransactions from CoreData
     private func fetchTransactions() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppPersistenceContainerProvider else {
-            print("Error: AppDelegate does not conform to AppPersistenceContainerProvider")
-            return
-        }
-        let managedObjectContext = appDelegate.persistentContainer.viewContext
+        let managedObjectContext = CoreDataStack.shared.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<Transactions>(entityName: "Transactions")
+        
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
         
         do {
             transactions = try managedObjectContext.fetch(fetchRequest)
@@ -111,7 +114,7 @@ public class HistoryViewController: UIViewController {
         case 0:
             historyPageView?.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         case 1:
-            historyPageView?.scrollView.setContentOffset(CGPoint(x: 393, y: 0), animated: true)
+            historyPageView?.scrollView.setContentOffset(CGPoint(x: Const.screenWidth, y: 0), animated: true)
         default:
             print("Error")
         }
@@ -196,8 +199,4 @@ extension HistoryViewController: UICalendarViewDelegate, UICalendarSelectionMult
                                    didDeselectDate dateComponents: DateComponents) {
         firstDate = nil
     }
-}
-
-public protocol AppPersistenceContainerProvider {
-    var persistentContainer: NSPersistentContainer { get }
 }

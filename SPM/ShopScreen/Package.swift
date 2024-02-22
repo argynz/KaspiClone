@@ -14,11 +14,12 @@ let package = Package(
             targets: ["ShopScreen"])
     ],
     dependencies: [
-            .package(name: "NetworkManager", path: "/SPM/NetworkManager")
+            .package(name: "NetworkManager", path: "/SPM/NetworkManager"),
+            .package(name: "Const", path: "/SPM/Const")
         ],
     targets: [
         .target(
             name: "ShopScreen",
-            dependencies: ["NetworkManager"])
+            dependencies: ["NetworkManager", "Const"])
     ]
 )

@@ -4,7 +4,7 @@ class HistoryTableViewCell: UITableViewCell {
     static let identifier = "customCell"
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
-        self.backgroundColor = Colors.lightGrayColor
+        self.backgroundColor = .lightGrayColor
         setupView()
     }
     
@@ -33,7 +33,7 @@ class HistoryTableViewCell: UITableViewCell {
     private let smallLabel: UILabel = {
         let label = UILabel()
         label.text = "Клиенту Kaspi"
-        label.textColor = Colors.mediumGrayColor
+        label.textColor = .mediumGrayColor
         label.font = UIFont.systemFont(ofSize: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -82,7 +82,7 @@ class HistoryTableViewCell: UITableViewCell {
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.text = "15 декабря"
-        label.textColor = Colors.mediumGrayColor
+        label.textColor = .mediumGrayColor
         label.font = UIFont.systemFont(ofSize: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -94,7 +94,7 @@ class HistoryTableViewCell: UITableViewCell {
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.isHidden = true
-        label.backgroundColor = Colors.mediumGrayColor
+        label.backgroundColor = .mediumGrayColor
         label.clipsToBounds = true
         label.layer.cornerRadius = 10
         label.preferredMaxLayoutWidth = 199.0

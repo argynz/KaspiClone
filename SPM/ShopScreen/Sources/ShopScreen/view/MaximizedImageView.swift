@@ -1,4 +1,5 @@
 import SwiftUI
+import Const
 
 struct MaximizedImageView: View {
     @EnvironmentObject var maximizedImageViewModel: MaximizedImageViewModel
@@ -28,7 +29,7 @@ struct MaximizedImageView: View {
                 HStack(spacing: 6) {
                     ForEach(0..<maximizedImageViewModel.images.count, id: \.self) { index in
                         Circle()
-                            .fill(index == maximizedImageViewModel.selectedTab ? Color.red : Colors.lightGrayColor)
+                            .fill(index == maximizedImageViewModel.selectedTab ? Color.red : Color.lightGrayColor)
                             .frame(width: 6, height: 6)
                     }
                 }

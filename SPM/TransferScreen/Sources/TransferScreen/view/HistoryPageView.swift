@@ -1,4 +1,5 @@
 import UIKit
+import Const
 
 class HistoryPageView {
     var segmentController: UISegmentedControl = {
@@ -35,7 +36,7 @@ class HistoryPageView {
     
     private var mainView: UIView = {
         let mainView = UIView()
-        mainView.backgroundColor = Colors.lightGrayColor
+        mainView.backgroundColor = .lightGrayColor
         mainView.translatesAutoresizingMaskIntoConstraints = false
         return mainView
     }()
@@ -118,7 +119,7 @@ class HistoryPageView {
     var searchTextField: UITextField = {
         let searchTextField  = UITextField()
         let searchTextFieldplaceholderAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: Colors.mediumGrayColor,
+            .foregroundColor: UIColor.mediumGrayColor,
             .font: UIFont.systemFont(ofSize: 16)
         ]
         searchTextField.attributedPlaceholder = NSAttributedString(string: "Имя, сумма, сообщение", 
@@ -145,9 +146,12 @@ class HistoryPageView {
     let calendar: UICalendarView = {
         let calendar = UICalendarView()
         calendar.backgroundColor = .white
-        calendar.frame = CGRect(x: 45, y: 200, width: 303, height: 303)
+        calendar.frame = CGRect(x: (Const.screenWidth - Const.calendarWidth) / 2,
+                                y: (Const.screenHeight - Const.calendarWidth) / 2,
+                                width: Const.calendarWidth,
+                                height: Const.calendarWidth)
         calendar.layer.borderWidth = 1
-        calendar.layer.borderColor = Colors.mediumGrayColor.cgColor
+        calendar.layer.borderColor = UIColor.mediumGrayColor.cgColor
         calendar.layer.cornerRadius = 8
         calendar.tintColor = .red
         calendar.locale = .current
@@ -198,13 +202,13 @@ class HistoryPageView {
             mainView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             mainView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             mainView.heightAnchor.constraint(equalToConstant: 618),
-            mainView.widthAnchor.constraint(equalToConstant: 786),
+            mainView.widthAnchor.constraint(equalToConstant: Const.screenWidth * 2),
             mainView.heightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.heightAnchor),
             
             transferHistoryView.topAnchor.constraint(equalTo: mainView.topAnchor),
             transferHistoryView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor),
             transferHistoryView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor),
-            transferHistoryView.widthAnchor.constraint(equalToConstant: 393),
+            transferHistoryView.widthAnchor.constraint(equalToConstant: Const.screenWidth),
             
             stackView.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 8),
             stackView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor),
