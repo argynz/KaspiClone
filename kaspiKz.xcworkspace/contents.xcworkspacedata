@@ -2,6 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../../../Documents/coding/Const">
+   </FileRef>
+   <FileRef
+      location = "group:SPM/TransferScreen">
+   </FileRef>
+   <FileRef
+      location = "group:SPM/ProfileScreen">
+   </FileRef>
+   <FileRef
       location = "group:SPM/NetworkManager">
    </FileRef>
    <FileRef

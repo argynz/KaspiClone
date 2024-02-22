@@ -1,14 +1,14 @@
 import UIKit
 import NetworkManager
 
-class ProfileViewController: UIViewController{
-    
+public class ProfileViewController: UIViewController {
     private var profilePageView: ProfilePageView?
+    private let networkManager = NetworkManagerImpl()
     
-    let userDefaults = UserDefaults.standard
-    var uuid = UUID()
+    private let userDefaults = UserDefaults.standard
+    private var uuid = UUID()
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         profilePageView = ProfilePageView()
@@ -20,10 +20,10 @@ class ProfileViewController: UIViewController{
         profilePageView?.nameEditButton.addTarget(nil, action: #selector(nameEditButton), for: .touchUpInside)
         profilePageView?.surnameEditButton.addTarget(nil, action: #selector(surnameEditButton), for: .touchUpInside)
         profilePageView?.randomImgButton.addTarget(nil, action: #selector(randomImgButtonPressed), for: .touchUpInside)
-        AddGustures()
+        addGustures()
     }
     
-    override func viewDidLayoutSubviews() {
+    public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if let profileImageView = profilePageView?.profileImageView {
                 profileImageView.layer.cornerRadius = profileImageView.frame.size.height / 2
@@ -58,12 +58,12 @@ class ProfileViewController: UIViewController{
         textField.isHidden = !textField.isHidden
     }
     
-    func AddGustures(){
-        let tap = UITapGestureRecognizer(target: self, action: #selector (ImageTapped))
+    func addGustures() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector (imageTapped))
         profilePageView?.profileImageView.addGestureRecognizer(tap)
     }
     
-    @objc func ImageTapped(){
+    @objc func imageTapped() {
         let picker = UIImagePickerController()
         picker.sourceType = .photoLibrary
         picker.delegate = self
@@ -80,7 +80,7 @@ class ProfileViewController: UIViewController{
         let currentUuid = UUID()
         self.uuid = currentUuid
         
-        NetworkManager.RandomPhotoService.shared.fetchRandomImage { [weak self] image, error in
+        networkManager.fetchRandomImage { [weak self] image, error in
             DispatchQueue.main.async {
                 guard let self, self.uuid == currentUuid else { return }
                 
@@ -104,12 +104,12 @@ class ProfileViewController: UIViewController{
 }
 
 extension ProfileViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        if let name = textField.text{
-            if textField == profilePageView?.nameTextField{
+    public func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        if let name = textField.text {
+            if textField == profilePageView?.nameTextField {
                 profilePageView?.editableNameLabel.text = name
                 userDefaults.setValue(name, forKey: "Name")
-            }else{
+            } else {
                 profilePageView?.editableSurnameLabel.text = name
                 userDefaults.setValue(name, forKey: "Surname")
             }
@@ -117,8 +117,9 @@ extension ProfileViewController: UITextFieldDelegate {
     }
 }
 
-extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    public func imagePickerController(_ picker: UIImagePickerController,
+                                      didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         let picking = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
         profilePageView?.profileImageView.image = picking
         userDefaults.set(picking?.pngData(), forKey: "PhotoData")
@@ -126,7 +127,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         picker.dismiss(animated: true)
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true)
     }
 }

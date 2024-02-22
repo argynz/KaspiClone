@@ -1,14 +1,15 @@
 import UIKit
 import CoreData
+import Const
 
-class HistoryViewController: UIViewController{
+public class HistoryViewController: UIViewController {
     private var historyPageView: HistoryPageView?
     
     private var transactions: [Transactions] = []
     private var filteredTransactions: [Transactions] = []
     
-    private var firstDate: Date? = nil
-    private var secondDate: Date? = nil
+    private var firstDate: Date?
+    private var secondDate: Date?
     
     private var isDateFiltering: Bool = false
     
@@ -17,22 +18,25 @@ class HistoryViewController: UIViewController{
         return !isSearchTextEmpty || isDateFiltering
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         historyPageView = HistoryPageView()
         historyPageView?.setupUI(view)
         setupTargets()
         setupDelegates()
+    }
+    
+    public override func viewWillAppear(_ animated: Bool) {
         fetchTransactions()
     }
     
-    private func setupTargets(){
+    private func setupTargets() {
         historyPageView?.segmentController.addTarget(self, action: #selector(segmentControler), for: .valueChanged)
         historyPageView?.calendarButton.addTarget(self, action: #selector(calendarButtonTapped), for: .touchUpInside)
         historyPageView?.toClientKaspi.addTarget(self, action: #selector(toClientKaspiPressed), for: .touchUpInside)
     }
     
-    private func setupDelegates(){
+    private func setupDelegates() {
         historyPageView?.tableView.delegate = self
         historyPageView?.scrollView.delegate = self
         historyPageView?.tableView.dataSource = self
@@ -43,7 +47,7 @@ class HistoryViewController: UIViewController{
         historyPageView?.calendar.selectionBehavior = dateSelection
     }
     
-    private func setupCalendarDelegates(_ calendar: UICalendarView){
+    private func setupCalendarDelegates(_ calendar: UICalendarView) {
         firstDate = nil
         calendar.delegate = self
         
@@ -51,11 +55,13 @@ class HistoryViewController: UIViewController{
         calendar.selectionBehavior = dateSelection
     }
     
-    //MARK: FetchTransactions from CoreData
+    // MARK: FetchTransactions from CoreData
     private func fetchTransactions() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedObjectContext = appDelegate.persistentContainer.viewContext
+        let managedObjectContext = CoreDataStack.shared.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<Transactions>(entityName: "Transactions")
+        
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
         
         do {
             transactions = try managedObjectContext.fetch(fetchRequest)
@@ -65,7 +71,7 @@ class HistoryViewController: UIViewController{
         }
     }
     
-    //MARK: Calendar
+    // MARK: Calendar
     private func updateButtonTitle(startDate: Date, endDate: Date) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMMM"
@@ -102,36 +108,38 @@ class HistoryViewController: UIViewController{
         self.present(historyPageView?.calendarViewController ?? UIViewController(), animated: true, completion: nil)
     }
     
-    //MARK: SegmentControler
+    // MARK: SegmentControler
     @objc private func segmentControler(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex{
+        switch sender.selectedSegmentIndex {
         case 0:
             historyPageView?.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         case 1:
-            historyPageView?.scrollView.setContentOffset(CGPoint(x: 393, y: 0), animated: true)
+            historyPageView?.scrollView.setContentOffset(CGPoint(x: Const.screenWidth, y: 0), animated: true)
         default:
             print("Error")
         }
     }
     
-    //MARK: To Kaspi Client Button Pressed
+    // MARK: To Kaspi Client Button Pressed
     @objc private func toClientKaspiPressed(_ sender: UISegmentedControl) {
-        let vc = TransferViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let viewC = TransferViewController()
+        navigationController?.pushViewController(viewC, animated: true)
     }
 }
 
-extension HistoryViewController: UITableViewDataSource, UITableViewDelegate{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return isSearching ? filteredTransactions.count : transactions.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 128
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifier, for: indexPath) as? HistoryTableViewCell else{
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: HistoryTableViewCell.identifier,
+            for: indexPath) as? HistoryTableViewCell else {
             fatalError("The table view could dequeue a Cell")
         }
         let transaction = isSearching ? filteredTransactions[indexPath.row] : transactions[indexPath.row]
@@ -140,14 +148,14 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate{
     }
 }
 
-extension HistoryViewController: UITextFieldDelegate{
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+extension HistoryViewController: UITextFieldDelegate {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         performSearch()
         return true
     }
     
-    func textFieldDidChangeSelection(_ textField: UITextField) {
+    public func textFieldDidChangeSelection(_ textField: UITextField) {
         performSearch()
     }
     
@@ -164,8 +172,8 @@ extension HistoryViewController: UITextFieldDelegate{
     }
 }
 
-extension HistoryViewController: UIScrollViewDelegate{
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+extension HistoryViewController: UIScrollViewDelegate {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y == 0 {
             let width = scrollView.bounds.size.width
             let page = Int((scrollView.contentOffset.x + (0.5 * width)) / width)
@@ -174,11 +182,12 @@ extension HistoryViewController: UIScrollViewDelegate{
     }
 }
 
-extension HistoryViewController: UICalendarViewDelegate, UICalendarSelectionMultiDateDelegate{
-    func multiDateSelection(_ selection: UICalendarSelectionMultiDate, didSelectDate dateComponents: DateComponents) {
-        if firstDate == nil{
+extension HistoryViewController: UICalendarViewDelegate, UICalendarSelectionMultiDateDelegate {
+    public func multiDateSelection(_ selection: UICalendarSelectionMultiDate,
+                                   didSelectDate dateComponents: DateComponents) {
+        if firstDate == nil {
             firstDate = dateComponents.date
-        }else{
+        } else {
             secondDate = dateComponents.date
             filterTransactionsByDateRange(startDate: firstDate ?? Date(), endDate: secondDate ?? Date())
             updateButtonTitle(startDate: firstDate ?? Date(), endDate: secondDate ?? Date())
@@ -186,7 +195,8 @@ extension HistoryViewController: UICalendarViewDelegate, UICalendarSelectionMult
         }
     }
     
-    func multiDateSelection(_ selection: UICalendarSelectionMultiDate, didDeselectDate dateComponents: DateComponents) {
+    public func multiDateSelection(_ selection: UICalendarSelectionMultiDate, 
+                                   didDeselectDate dateComponents: DateComponents) {
         firstDate = nil
     }
 }

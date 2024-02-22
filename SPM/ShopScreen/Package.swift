@@ -11,15 +11,15 @@ let package = Package(
     products: [
         .library(
             name: "ShopScreen",
-            targets: ["ShopScreen"]),
+            targets: ["ShopScreen"])
     ],
     dependencies: [
-            // Reference local NetworkManager package by path
-            .package(name: "NetworkManager",path: "/SPM/NetworkManager"),
+            .package(name: "NetworkManager", path: "/SPM/NetworkManager"),
+            .package(name: "Const", path: "/SPM/Const")
         ],
     targets: [
         .target(
             name: "ShopScreen",
-            dependencies: ["NetworkManager"]),
+            dependencies: ["NetworkManager", "Const"])
     ]
 )

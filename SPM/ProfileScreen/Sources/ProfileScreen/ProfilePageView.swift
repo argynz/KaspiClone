@@ -1,4 +1,5 @@
 import UIKit
+import Const
 
 class ProfilePageView {
     
@@ -6,14 +7,14 @@ class ProfilePageView {
     
     private var mainView: UIView = {
         let mainView = UIView()
-        mainView.backgroundColor = Constants.lightGrayColor
+        mainView.backgroundColor = .lightGrayColor
         mainView.translatesAutoresizingMaskIntoConstraints = false
         return mainView
     }()
     
     private var topView: UIView = {
         let topView = UIView()
-        topView.backgroundColor = Constants.darkGrayColor
+        topView.backgroundColor = .darkGrayColor
         topView.translatesAutoresizingMaskIntoConstraints = false
         return topView
     }()
@@ -23,7 +24,8 @@ class ProfilePageView {
         profileImageView.layer.borderWidth = 1
         profileImageView.layer.borderColor = UIColor.clear.cgColor
         profileImageView.clipsToBounds = true
-        profileImageView.image = UIImage(data: (userDefaults.data(forKey: "PhotoData") ?? UIImage(named: "Icon")?.pngData())!)
+        profileImageView.image = UIImage(
+            data: (userDefaults.data(forKey: "PhotoData") ?? UIImage(named: "Icon")?.pngData())!)
         profileImageView.isUserInteractionEnabled = true
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         return profileImageView
@@ -137,7 +139,7 @@ class ProfilePageView {
         return surnameEditButton
     }()
     
-    private func setupSubviews(_ containerView: UIView){
+    private func setupSubviews(_ containerView: UIView) {
         containerView.addSubview(mainView)
         mainView.addSubview(topView)
         topView.addSubview(profileImageView)
@@ -157,7 +159,7 @@ class ProfilePageView {
         surnameView.addSubview(surnameEditButton)
     }
     
-    private func setupConstraints(_ containerView: UIView){
+    private func setupConstraints(_ containerView: UIView) {
         NSLayoutConstraint.activate([
             mainView.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor),
             mainView.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor),
@@ -222,13 +224,14 @@ class ProfilePageView {
             noneEditableSurnameLabel.leadingAnchor.constraint(equalTo: surnameView.leadingAnchor, constant: 16),
             noneEditableSurnameLabel.centerYAnchor.constraint(equalTo: surnameView.centerYAnchor),
             
-            editableSurnameLabel.leadingAnchor.constraint(equalTo: noneEditableSurnameLabel.trailingAnchor, constant: 6),
+            editableSurnameLabel.leadingAnchor.constraint(
+                equalTo: noneEditableSurnameLabel.trailingAnchor, constant: 6),
             editableSurnameLabel.centerYAnchor.constraint(equalTo: surnameView.centerYAnchor),
             
             surnameEditButton.trailingAnchor.constraint(equalTo: surnameView.trailingAnchor, constant: -16),
             surnameEditButton.centerYAnchor.constraint(equalTo: surnameView.centerYAnchor),
             surnameEditButton.heightAnchor.constraint(equalToConstant: 35),
-            surnameEditButton.widthAnchor.constraint(equalToConstant: 46),
+            surnameEditButton.widthAnchor.constraint(equalToConstant: 46)
         ])
     }
     

@@ -4,11 +4,11 @@ class HistoryTableViewCell: UITableViewCell {
     static let identifier = "customCell"
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
-        self.backgroundColor = Constants.lightGrayColor
+        self.backgroundColor = .lightGrayColor
         setupView()
     }
     
-    func setupView(){
+    func setupView() {
         self.addSubview(dateLabel)
         mainView.addSubview(avatarView)
         mainView.addSubview(kaspiGoldTitle)
@@ -21,7 +21,7 @@ class HistoryTableViewCell: UITableViewCell {
         setupConstraints()
     }
     
-    private let transferAmount:UILabel = {
+    private let transferAmount: UILabel = {
         let label = UILabel()
         label.text = "1 123,45 ₸"
         label.textColor = .black
@@ -30,16 +30,16 @@ class HistoryTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let smallLabel:UILabel = {
+    private let smallLabel: UILabel = {
         let label = UILabel()
         label.text = "Клиенту Kaspi"
-        label.textColor = Constants.mediumGrayColor
+        label.textColor = .mediumGrayColor
         label.font = UIFont.systemFont(ofSize: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let nameTitle:UILabel = {
+    private let nameTitle: UILabel = {
         let label = UILabel()
         label.text = "Аскар К."
         label.textColor = .black
@@ -55,7 +55,7 @@ class HistoryTableViewCell: UITableViewCell {
         return image
     }()
     
-    private let kaspiGoldTitle:UILabel = {
+    private let kaspiGoldTitle: UILabel = {
         let label = UILabel()
         label.text = "Kaspi Gold"
         label.textColor = .black
@@ -79,22 +79,22 @@ class HistoryTableViewCell: UITableViewCell {
         return view
     }()
     
-    private let dateLabel:UILabel = {
+    private let dateLabel: UILabel = {
         let label = UILabel()
         label.text = "15 декабря"
-        label.textColor = Constants.mediumGrayColor
+        label.textColor = .mediumGrayColor
         label.font = UIFont.systemFont(ofSize: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let messageLabel:UILabel = {
+    private let messageLabel: UILabel = {
         let label = PaddingLabel()
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.isHidden = true
-        label.backgroundColor = Constants.mediumGrayColor
+        label.backgroundColor = .mediumGrayColor
         label.clipsToBounds = true
         label.layer.cornerRadius = 10
         label.preferredMaxLayoutWidth = 199.0
@@ -106,13 +106,13 @@ class HistoryTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupConstraints(){
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             messageLabel.centerYAnchor.constraint(equalTo: smallLabel.centerYAnchor),
             messageLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20),
             
-            dateLabel.topAnchor.constraint(equalTo: self.topAnchor,constant: 16),
-            dateLabel.leftAnchor.constraint(equalTo: self.leftAnchor,constant: 16),
+            dateLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            dateLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
             
             mainView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             mainView.leftAnchor.constraint(equalTo: self.leftAnchor),
@@ -148,15 +148,15 @@ class HistoryTableViewCell: UITableViewCell {
         transferAmount.text = transaction.money
         dateLabel.text = convertDateToDayMonthString(date: transaction.date!)
         
-        if let message = transaction.message{
+        if let message = transaction.message {
             messageLabel.isHidden = false
             messageLabel.text = message
-        }else{
+        } else {
             messageLabel.isHidden = true
         }
     }
     
-    private func convertDateToDayMonthString(date: Date) -> String{
+    private func convertDateToDayMonthString(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMMM"
         dateFormatter.locale = Locale(identifier: "ru_RU")

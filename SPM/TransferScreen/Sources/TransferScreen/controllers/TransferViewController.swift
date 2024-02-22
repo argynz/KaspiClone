@@ -2,7 +2,7 @@ import UIKit
 import Contacts
 import ContactsUI
 
-class TransferViewController: UIViewController{
+class TransferViewController: UIViewController {
     
     private var transferPageView: TransferPageView!
     private var currentResiver = PersonModel(name: nil, number: nil)
@@ -30,39 +30,39 @@ class TransferViewController: UIViewController{
     }
     
     @objc private func contactsButtonPressed() {
-        let vc = CNContactPickerViewController()
-        vc.delegate = self
-        present(vc, animated: true)
+        let viewC = CNContactPickerViewController()
+        viewC.delegate = self
+        present(viewC, animated: true)
     }
     
     @objc private func transferConfirmationButton() {
         let money = Int(transferPageView.getMoneyTextFieldText()!)!
-        if money > 100 && currentResiver.name != nil{
+        if money > 100 && currentResiver.name != nil {
             transferPageView.moneyErrorDealer(false)
             transferPageView.phoneErrorDealer(false)
-            let vc = ConfirmationViewController()
-            vc.name = currentResiver.name ?? "Имя Ф."
-            vc.money = (transferPageView.getMoneyTextFieldText() ?? "0") + " ₸"
+            let viewC = ConfirmationViewController()
+            viewC.name = currentResiver.name ?? "Имя Ф."
+            viewC.money = (transferPageView.getMoneyTextFieldText() ?? "0") + " ₸"
             let message = transferPageView.getMessageTextFieldText() ?? ""
-            if message.isEmpty{
-                vc.message = nil
-            }else{
-                vc.message = message
+            if message.isEmpty {
+                viewC.message = nil
+            } else {
+                viewC.message = message
             }
-            navigationController?.pushViewController(vc, animated: true)
-        }else{
-            if money == 0{
+            navigationController?.pushViewController(viewC, animated: true)
+        } else {
+            if money == 0 {
                 transferPageView.setMoneyErrorLabel("Вы не указали сумму перевода")
                 transferPageView.moneyErrorDealer(true)
-            }else if money < 100{
+            } else if money < 100 {
                 transferPageView.setMoneyErrorLabel("Минимальная сумма перевода 100,00 ₸")
                 transferPageView.moneyErrorDealer(true)
             }
-            if currentResiver.name == nil{
-                if let text = transferPageView.getResiverNumberTextFieldText(), text.isEmpty{
+            if currentResiver.name == nil {
+                if let text = transferPageView.getResiverNumberTextFieldText(), text.isEmpty {
                     transferPageView.setPhoneErrorLabel("Вы не указали номер телефона")
                     transferPageView.phoneErrorDealer(true)
-                }else{
+                } else {
                     transferPageView.setPhoneErrorLabel("Проверьте правильность ввода данных")
                     transferPageView.phoneErrorDealer(true)
                 }
@@ -80,9 +80,11 @@ class TransferViewController: UIViewController{
     }
 }
 
-extension TransferViewController: UITextFieldDelegate{
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == transferPageView.getMoneyTextField(){
+extension TransferViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, 
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        if textField == transferPageView.getMoneyTextField() {
             transferPageView.moneyErrorDealer(false)
             let currentText = textField.text ?? ""
             let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
@@ -101,7 +103,7 @@ extension TransferViewController: UITextFieldDelegate{
             textField.text = textToSet
             return false
         }
-        if textField == transferPageView.getResiverNumberTextField(){
+        if textField == transferPageView.getResiverNumberTextField() {
             transferPageView.phoneErrorDealer(false)
         }
         return true
@@ -109,19 +111,17 @@ extension TransferViewController: UITextFieldDelegate{
     
 }
 
-extension TransferViewController: CNContactPickerDelegate{
+extension TransferViewController: CNContactPickerDelegate {
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-        if let contacyName = contact.familyName.first{
+        if let contacyName = contact.familyName.first {
             let name = contact.givenName + " " + String(contacyName) + "."
-            let number = contact.phoneNumbers.map{ $0.value.stringValue }
+            let number = contact.phoneNumbers.map { $0.value.stringValue }
             currentResiver = PersonModel(name: name, number: number[0])
             transferPageView.resiverViewPopUp(currentResiver.number ?? "", currentResiver.name ?? "")
             transferPageView.phoneErrorDealer(false)
-        }else{
+        } else {
             print("error with contact")
         }
         
     }
 }
-
-

@@ -1,7 +1,6 @@
 import UIKit
 
 class CustomButton: UIButton {
-    
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.tintColor = .red 
@@ -31,7 +30,7 @@ class CustomButton: UIButton {
         mainTitleLabel.text = title
         if subtitle == nil {
             setupButtonWithoutSubtitle()
-        }else{
+        } else {
             customSubtitleLabel.text = subtitle
             setupButtonWithSubtitle()
         }
@@ -51,8 +50,7 @@ class CustomButton: UIButton {
             iconImageView.heightAnchor.constraint(equalToConstant: 24),
             
             mainTitleLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 12),
-            mainTitleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            
+            mainTitleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
     

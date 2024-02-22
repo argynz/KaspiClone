@@ -1,15 +1,16 @@
 import SwiftUI
+import Const
 
-struct MaximizedImageView: View{
+struct MaximizedImageView: View {
     @EnvironmentObject var maximizedImageViewModel: MaximizedImageViewModel
     
     var body: some View {
-        ZStack{
+        ZStack {
             Color.white
                 .ignoresSafeArea()
             
             VStack {
-                TabView(selection: $maximizedImageViewModel.selectedTab){
+                TabView(selection: $maximizedImageViewModel.selectedTab) {
                     ForEach(0..<maximizedImageViewModel.images.count, id: \.self) { index in
                         if let url = URL(string: maximizedImageViewModel.images[index]) {
                             AsyncImage(url: url) { image in
@@ -28,7 +29,7 @@ struct MaximizedImageView: View{
                 HStack(spacing: 6) {
                     ForEach(0..<maximizedImageViewModel.images.count, id: \.self) { index in
                         Circle()
-                            .fill(index == maximizedImageViewModel.selectedTab ? Color.red : Colors.lightGrayColor)
+                            .fill(index == maximizedImageViewModel.selectedTab ? Color.red : Color.lightGrayColor)
                             .frame(width: 6, height: 6)
                     }
                 }
@@ -40,10 +41,10 @@ struct MaximizedImageView: View{
                 }, label: {
                     Image(systemName: "xmark")
                         .foregroundColor(Color.red)
-                        .frame(width: 30,height: 30)
+                        .frame(width: 30, height: 30)
                 })
                 .padding(10)
-                ,alignment: .topTrailing
+                , alignment: .topTrailing
             )
         }
     }

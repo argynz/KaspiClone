@@ -1,5 +1,5 @@
 import UIKit
-struct PersonModel{
+struct PersonModel {
     let name: String?
     let number: String?
 }

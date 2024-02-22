@@ -1,11 +1,13 @@
 import SwiftUI
 import NetworkManager
 
-class MainPageViewModel: ObservableObject{
-    @Published var memes: [Meme] = []
-    @Published var products: [NetworkManager.Product] = []
+public class MainPageViewModel: ObservableObject {
+    @Published public var memes: [Meme] = []
+    @Published public var products: [Product] = []
     
     @State var searchText = ""
+    
+    public init() {}
     
     let creditColumns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     let productsColumns = [GridItem(.flexible()), GridItem(.flexible())]
@@ -13,32 +15,6 @@ class MainPageViewModel: ObservableObject{
         GridItem(.flexible(), spacing: 16),
         GridItem(.flexible(), spacing: 16),
         GridItem(.flexible(), spacing: 16),
-        GridItem(.flexible(), spacing: 16),
+        GridItem(.flexible(), spacing: 16)
     ]
-    
-    func fetchMemes() {
-        RandomMemeService.sharedMeme.fetchMemes { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let fetchedMemes):
-                    self.memes = fetchedMemes
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
-    }
-    
-    func fetchProducts() {
-        ProductsService.sharedProduct.fetchProducts { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let products):
-                    self.products = products
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
-    }
 }

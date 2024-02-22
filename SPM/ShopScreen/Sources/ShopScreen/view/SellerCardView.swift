@@ -1,17 +1,18 @@
 import SwiftUI
+import Const
 
 struct SellerCardView: View {
     @EnvironmentObject private var productViewModel: ProductViewModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            HStack{
+            HStack {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("KORKEM KZ")
                         .font(.system(size: 18))
                     
                     HStack(spacing: 4) {
-                        ForEach(0..<5){_ in 
+                        ForEach(0..<5) {_ in
                             Image("starGreen")
                         }
                         
@@ -28,18 +29,18 @@ struct SellerCardView: View {
                         .foregroundColor(.white)
                         .font(.system(size: 14))
                         .frame(width: 108, height: 31)
-                        .background(Colors.buttonBlueColor)
+                        .background(Color.buttonBlueColor)
                         .cornerRadius(4)
                 }
             }
-            HStack{
+            HStack {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(productViewModel.price + " $")
                         .font(.system(size: 13))
                         .bold()
                     HStack {
                         Rectangle()
-                            .fill(Colors.customYellowColor)
+                            .fill(Color.customYellowColor)
                             .frame(width: 44, height: 20)
                             .overlay(
                                 Text(String(productViewModel.installmentPrice)+" $")
@@ -48,13 +49,13 @@ struct SellerCardView: View {
                             )
                         Text("x " + String(productViewModel.installmentPeriod) + " мес")
                             .font(.system(size: 12))
-                            .foregroundColor(Colors.mediumGrayColor)
+                            .foregroundColor(Color.mediumGrayColor)
                     }
                 }
                 
                 Spacer()
                 
-                VStack{
+                VStack {
                     HStack {
                         Image("box")
                         Text("Postomat, ").font(.system(size: 12)) +
