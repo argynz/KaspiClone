@@ -5,14 +5,14 @@ class TransferSuccessViewController: UIViewController {
     
     private var mainView: UIView = {
         let mainView = UIView()
-        mainView.backgroundColor = Colors.lightGrayColor
+        mainView.backgroundColor = .lightGrayColor
         mainView.translatesAutoresizingMaskIntoConstraints = false
         return mainView
     }()
     
     private var topView: UIView = {
         let topView = UIView()
-        topView.backgroundColor = Colors.customGreenColor
+        topView.backgroundColor = .customGreenColor
         topView.translatesAutoresizingMaskIntoConstraints = false
         return topView
     }()
@@ -46,7 +46,7 @@ class TransferSuccessViewController: UIViewController {
         let transferDiscriptionLabel = UILabel()
         transferDiscriptionLabel.text = "Показать квитанцию"
         transferDiscriptionLabel.font = UIFont.systemFont(ofSize: 18)
-        transferDiscriptionLabel.textColor = Colors.customBlueColor
+        transferDiscriptionLabel.textColor = .customBlueColor
         transferDiscriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         return transferDiscriptionLabel
     }()
@@ -55,7 +55,7 @@ class TransferSuccessViewController: UIViewController {
         let transferDiscriptionLabel = UILabel()
         transferDiscriptionLabel.text = "Квитанция сохранена в Истории"
         transferDiscriptionLabel.font = UIFont.systemFont(ofSize: 12)
-        transferDiscriptionLabel.textColor = Colors.mediumGrayColor
+        transferDiscriptionLabel.textColor = .mediumGrayColor
         transferDiscriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         return transferDiscriptionLabel
     }()
@@ -87,7 +87,7 @@ class TransferSuccessViewController: UIViewController {
         let transferDiscriptionLabel = UILabel()
         transferDiscriptionLabel.text = "Сохранить в Частые"
         transferDiscriptionLabel.font = UIFont.systemFont(ofSize: 12)
-        transferDiscriptionLabel.textColor = Colors.customBlueColor
+        transferDiscriptionLabel.textColor = .customBlueColor
         transferDiscriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         return transferDiscriptionLabel
     }()
@@ -102,7 +102,7 @@ class TransferSuccessViewController: UIViewController {
         let backButton = UIButton()
         backButton.setTitle("Вернуться в Переводы", for: .normal)
         backButton.setTitleColor(.white, for: .normal)
-        backButton.backgroundColor = Colors.customBlueColor
+        backButton.backgroundColor = .customBlueColor
         backButton.layer.cornerRadius = 6
         backButton.clipsToBounds = true
         backButton.addTarget(nil, action: #selector(confirmationButtonPressed), for: .touchUpInside)

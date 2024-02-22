@@ -5,8 +5,8 @@ public class ProfileViewController: UIViewController {
     private var profilePageView: ProfilePageView?
     private let networkManager = NetworkManagerImpl()
     
-    let userDefaults = UserDefaults.standard
-    var uuid = UUID()
+    private let userDefaults = UserDefaults.standard
+    private var uuid = UUID()
     
     public override func viewDidLoad() {
         super.viewDidLoad()

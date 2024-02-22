@@ -1,4 +1,5 @@
 import UIKit
+import Const
 
 class ProfilePageView {
     
@@ -6,14 +7,14 @@ class ProfilePageView {
     
     private var mainView: UIView = {
         let mainView = UIView()
-        mainView.backgroundColor = Colors.lightGrayColor
+        mainView.backgroundColor = .lightGrayColor
         mainView.translatesAutoresizingMaskIntoConstraints = false
         return mainView
     }()
     
     private var topView: UIView = {
         let topView = UIView()
-        topView.backgroundColor = Colors.darkGrayColor
+        topView.backgroundColor = .darkGrayColor
         topView.translatesAutoresizingMaskIntoConstraints = false
         return topView
     }()

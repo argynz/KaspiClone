@@ -1,4 +1,5 @@
 import SwiftUI
+import Const
 
 struct CreditView: View {
     var iconName: String
@@ -16,7 +17,7 @@ struct CreditView: View {
                     .font(.system(size: 16))
                 Text(discription)
                     .font(.system(size: 12))
-                    .foregroundColor(Colors.mediumGrayColor)
+                    .foregroundColor(Color.mediumGrayColor)
             }
         }
         .padding(.horizontal, 18)

@@ -7,10 +7,8 @@ import NetworkManager
 
 class TabBarController: UITabBarController {
     var observer: Any?
-    var mainPageViewModel = MainPageViewModel()
     
-    init(mainPageViewModel: MainPageViewModel) {
-        self.mainPageViewModel = mainPageViewModel
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -23,7 +21,7 @@ class TabBarController: UITabBarController {
         view.backgroundColor = .white
         tabBar.tintColor = .red
         UINavigationBar.appearance().tintColor = .red
-        setupTabs()
+        setupTabs(memesResult: nil, productsResult: nil)
         selectedIndex = 2
         
         observer = NotificationCenter.default.addObserver(forName: .didChangeTabBarVisibility, 
@@ -34,13 +32,13 @@ class TabBarController: UITabBarController {
         }
     }
     
-    private func setupTabs() {
-        let main = createNavBar(with: "Главная", 
+    private func setupTabs(memesResult: Result<[Meme], Error>?, productsResult: Result<[Product], Error>?) {
+        let mainPageView = MainPageView(memesResult: memesResult, productsResult: productsResult)
+        let main = createNavBar(with: "Главная",
                                 and: UIImage(systemName: "house"),
                                 viewC: UIHostingController(
-                                    rootView: MainPageView(
-                                        mainPageViewModel: mainPageViewModel)))
-        let transfer = createNavBar(with: "Переводы", 
+                                    rootView: mainPageView))
+        let transfer = createNavBar(with: "Переводы",
                                     and: UIImage(systemName: "repeat"),
                                     viewC: HistoryViewController())
         let profile = createNavBar(with: "Профиль",
@@ -58,4 +56,12 @@ class TabBarController: UITabBarController {
         nav.viewControllers.first?.navigationItem.title = title
         return nav
     }
+    
+    func updateMainPageView(memesResult: Result<[Meme], Error>?, productsResult: Result<[Product], Error>?) {
+            if let mainNavController = viewControllers?[0] as? UINavigationController,
+               let hostingController = mainNavController.viewControllers.first as? UIHostingController<MainPageView> {
+                hostingController.rootView = MainPageView(memesResult: memesResult, productsResult: productsResult)
+                hostingController.view.setNeedsDisplay()
+            }
+        }
 }

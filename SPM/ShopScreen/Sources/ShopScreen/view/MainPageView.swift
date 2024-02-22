@@ -1,13 +1,37 @@
 import SwiftUI
 import NetworkManager
+import Const
 
 public struct MainPageView: View {
     @ObservedObject public var mainPageViewModel = MainPageViewModel()
     @StateObject private var maximizedImageViewModel = MaximizedImageViewModel()
     
-    public init(mainPageViewModel: MainPageViewModel) {
+    public init(memesResult: Result<[Meme], Error>?, productsResult: Result<[Product], Error>?) {
         UIScrollView.appearance().bounces = false
-        self.mainPageViewModel = mainPageViewModel
+        processResult(memesResult: memesResult, productsResult: productsResult)
+    }
+    
+    private func processResult(memesResult: Result<[Meme], Error>?,
+                               productsResult: Result<[Product], Error>?) {
+        if let memesResult = memesResult {
+            switch memesResult {
+            case .success(let memes):
+                mainPageViewModel.memes = memes
+                mainPageViewModel.isMemeLoading.toggle()
+            case .failure:
+                break
+            }
+        }
+        
+        if let productsResult = productsResult {
+            switch productsResult {
+            case .success(let products):
+                mainPageViewModel.products = products
+                mainPageViewModel.isProductLoading.toggle()
+            case .failure:
+                break
+            }
+        }
     }
     
     public var body: some View {
@@ -21,7 +45,7 @@ public struct MainPageView: View {
                     productsView
                 }
             }
-            .background(Colors.backgroundGrayColor)
+            .background(Color.backgroundGrayColor)
             .navigationBarHidden(true)
         }
         .overlay {
@@ -37,20 +61,20 @@ public struct MainPageView: View {
     private var searchBarView: some View {
         HStack {
             Image(systemName: "magnifyingglass")
-                .foregroundColor(Colors.mediumGrayColor)
+                .foregroundColor(Color.mediumGrayColor)
                 .padding(.horizontal, 8)
             TextField("Поиск по Kaspi.kz", text: $mainPageViewModel.searchText)
                 .foregroundColor(Color(red: 158/255.0, green: 158/255.0, blue: 158/255.0))
                 .padding(.vertical, 10)
         }
-        .background(Colors.backgroundGrayColor)
+        .background(Color.backgroundGrayColor)
         .cornerRadius(10)
         .padding(.vertical, 8)
         .padding(.horizontal, 18)
         .overlay(
                 Rectangle()
                     .frame(height: 1)
-                    .foregroundColor(Colors.lightGrayColor), 
+                    .foregroundColor(Color.lightGrayColor), 
                 alignment: .bottom
             )
     }
@@ -66,7 +90,7 @@ public struct MainPageView: View {
                             maximizedImageViewModel.selectedTab = index
                         }, label: {
                             Rectangle()
-                                .fill(Colors.lightGrayColor)
+                                .fill(Color.lightGrayColor)
                                 .frame(width: 165, height: 100)
                                 .cornerRadius(10)
                                 .overlay {
@@ -80,7 +104,7 @@ public struct MainPageView: View {
                                     }
                                 }
                         })
-                        
+                          
                         Text(mainPageViewModel.memes[index].title)
                             .frame(maxWidth: 165, alignment: .leading)
                             .font(.system(size: 12))
@@ -88,6 +112,7 @@ public struct MainPageView: View {
                             .padding(.bottom, 8)
                             .foregroundColor(Color(red: 144.0/255.0, green: 144.0/255.0, blue: 144.0/255.0))
                     }
+                    .redactShimmer(condition: mainPageViewModel.isMemeLoading)
                 }
             }
             .padding(.horizontal, 18)
@@ -135,13 +160,13 @@ public struct MainPageView: View {
                     .font(.system(size: 15))
                 Text("Продукты питания с бесплатной доставкой")
                     .font(.system(size: 12))
-                    .foregroundColor(Colors.mediumGrayColor)
+                    .foregroundColor(Color.mediumGrayColor)
             }
             
             Spacer()
             
             Image(systemName: "chevron.right")
-                .foregroundColor(Colors.lightGrayColor)
+                .foregroundColor(Color.lightGrayColor)
         }
         .frame(height: 64)
         .padding(.leading, 8)
@@ -181,6 +206,7 @@ public struct MainPageView: View {
                 LazyVGrid(columns: mainPageViewModel.productsColumns, spacing: 20) {
                     ForEach(0..<mainPageViewModel.products.count, id: \.self) { index in
                         ProductCardView(product: mainPageViewModel.products[index])
+                            .redactShimmer(condition: mainPageViewModel.isProductLoading)
                     }
                 }
             }

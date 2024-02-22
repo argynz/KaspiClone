@@ -2,8 +2,10 @@ import SwiftUI
 import NetworkManager
 
 public class MainPageViewModel: ObservableObject {
-    @Published public var memes: [Meme] = []
-    @Published public var products: [Product] = []
+    @Published public var memes: [Meme] = Meme.sample
+    @Published public var products: [Product] = Product.sample
+    @Published public var isMemeLoading: Bool = true
+    @Published public var isProductLoading: Bool = true
     
     @State var searchText = ""
     

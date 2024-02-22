@@ -13,8 +13,18 @@ let package = Package(
             name: "TransferScreen",
             targets: ["TransferScreen"])
     ],
+    dependencies: [
+        .package(name: "Const", path: "/SPM/Const")
+    ],
     targets: [
         .target(
-            name: "TransferScreen")
+            name: "TransferScreen",
+            dependencies: [
+                "Const"
+            ],
+            resources: [
+                    .process("models/DataModelCompiled.momd")
+            ]
+        )
     ]
 )

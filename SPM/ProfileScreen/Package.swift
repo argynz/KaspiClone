@@ -14,13 +14,15 @@ let package = Package(
             targets: ["ProfileScreen"])
     ],
     dependencies: [
-        .package(name: "NetworkManager", path: "/SPM/NetworkManager")
+        .package(name: "NetworkManager", path: "/SPM/NetworkManager"),
+        .package(name: "Const", path: "/SPM/Const")
     ],
     targets: [
         .target(
             name: "ProfileScreen",
             dependencies: [
-                "NetworkManager"
+                "NetworkManager",
+                "Const"
             ])
     ]
 )

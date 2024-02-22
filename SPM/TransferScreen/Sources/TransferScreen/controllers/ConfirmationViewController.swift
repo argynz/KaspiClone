@@ -7,7 +7,7 @@ class ConfirmationViewController: UIViewController {
     var message: String?
     private var mainView: UIView = {
         let mainView = UIView()
-        mainView.backgroundColor = Colors.lightGrayColor
+        mainView.backgroundColor = .lightGrayColor
         mainView.translatesAutoresizingMaskIntoConstraints = false
         return mainView
     }()
@@ -101,7 +101,7 @@ class ConfirmationViewController: UIViewController {
         let messageDiscriptionLabel = UILabel()
         messageDiscriptionLabel.text = "Сообщениу получателю"
         messageDiscriptionLabel.font = UIFont.systemFont(ofSize: 12)
-        messageDiscriptionLabel.textColor = Colors.mediumGrayColor
+        messageDiscriptionLabel.textColor = .mediumGrayColor
         messageDiscriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         return messageDiscriptionLabel
     }()
@@ -120,7 +120,7 @@ class ConfirmationViewController: UIViewController {
         let confirmationButton = UIButton()
         confirmationButton.setTitle("Подтвердить и перевести " + money, for: .normal)
         confirmationButton.setTitleColor(.white, for: .normal)
-        confirmationButton.backgroundColor = Colors.customBlueColor
+        confirmationButton.backgroundColor = .customBlueColor
         confirmationButton.layer.cornerRadius = 6
         confirmationButton.clipsToBounds = true
         confirmationButton.addTarget(nil, action: #selector(confirmationButtonPressed), for: .touchUpInside)
@@ -216,8 +216,7 @@ class ConfirmationViewController: UIViewController {
         ])
     }
     @objc private func confirmationButtonPressed() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppPersistenceContainerProvider else { return }
-        let managedObjectContext = appDelegate.persistentContainer.viewContext
+        let managedObjectContext = CoreDataStack.shared.persistentContainer.viewContext
         let transaction = Transactions(context: managedObjectContext)
         transaction.name = name
         transaction.money = money
@@ -225,16 +224,20 @@ class ConfirmationViewController: UIViewController {
         transaction.date = Date()
         do {
             try managedObjectContext.save()
-            let bottomSheet = TransferSuccessViewController()
-            if let sheet = bottomSheet.sheetPresentationController {
-                sheet.detents = [.large(), .medium()]
-                sheet.prefersGrabberVisible = true
-            }
-            bottomSheet.name = name
-            bottomSheet.money = money
-            self.present(bottomSheet, animated: true)
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            presentSuccessBottomSheet(name: name, money: money)
+        } catch {
+            print("Could not save transaction: \(error)")
         }
+    }
+
+    private func presentSuccessBottomSheet(name: String, money: String) {
+        let bottomSheet = TransferSuccessViewController()
+        if let sheet = bottomSheet.sheetPresentationController {
+            sheet.detents = [.large(), .medium()]
+            sheet.prefersGrabberVisible = true
+        }
+        bottomSheet.name = name
+        bottomSheet.money = money
+        self.present(bottomSheet, animated: true)
     }
 }

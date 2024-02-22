@@ -16,6 +16,7 @@
 		D573046E2B7AB81C00704C16 /* NetworkManager in Frameworks */ = {isa = PBXBuildFile; productRef = D573046D2B7AB81C00704C16 /* NetworkManager */; };
 		D57304702B7AB82000704C16 /* ProfileScreen in Frameworks */ = {isa = PBXBuildFile; productRef = D573046F2B7AB82000704C16 /* ProfileScreen */; };
 		D5CACF0A2B5B1DF900D51306 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CACF092B5B1DF800D51306 /* TabBarController.swift */; };
+		D5DF266E2B865ACC00CC156A /* Const in Frameworks */ = {isa = PBXBuildFile; productRef = D5DF266D2B865ACC00CC156A /* Const */; };
 		D5E964662B5FFB1C005B2169 /* ShopScreen in Frameworks */ = {isa = PBXBuildFile; productRef = D5E964652B5FFB1C005B2169 /* ShopScreen */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5DF266E2B865ACC00CC156A /* Const in Frameworks */,
 				D5E964662B5FFB1C005B2169 /* ShopScreen in Frameworks */,
 				D57304702B7AB82000704C16 /* ProfileScreen in Frameworks */,
 				D56A96892B77D9DD0084FE63 /* TransferScreen in Frameworks */,
@@ -120,6 +122,7 @@
 				D56A96882B77D9DD0084FE63 /* TransferScreen */,
 				D573046D2B7AB81C00704C16 /* NetworkManager */,
 				D573046F2B7AB82000704C16 /* ProfileScreen */,
+				D5DF266D2B865ACC00CC156A /* Const */,
 			);
 			productName = kaspiKz;
 			productReference = D54830EF2AF37E7000A95FC7 /* kaspiKz.app */;
@@ -467,6 +470,10 @@
 		D573046F2B7AB82000704C16 /* ProfileScreen */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ProfileScreen;
+		};
+		D5DF266D2B865ACC00CC156A /* Const */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Const;
 		};
 		D5E964652B5FFB1C005B2169 /* ShopScreen */ = {
 			isa = XCSwiftPackageProductDependency;

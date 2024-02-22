@@ -1,4 +1,5 @@
 import SwiftUI
+import Const
 
 struct SellerCardView: View {
     @EnvironmentObject private var productViewModel: ProductViewModel
@@ -28,7 +29,7 @@ struct SellerCardView: View {
                         .foregroundColor(.white)
                         .font(.system(size: 14))
                         .frame(width: 108, height: 31)
-                        .background(Colors.buttonBlueColor)
+                        .background(Color.buttonBlueColor)
                         .cornerRadius(4)
                 }
             }
@@ -39,7 +40,7 @@ struct SellerCardView: View {
                         .bold()
                     HStack {
                         Rectangle()
-                            .fill(Colors.customYellowColor)
+                            .fill(Color.customYellowColor)
                             .frame(width: 44, height: 20)
                             .overlay(
                                 Text(String(productViewModel.installmentPrice)+" $")
@@ -48,7 +49,7 @@ struct SellerCardView: View {
                             )
                         Text("x " + String(productViewModel.installmentPeriod) + " мес")
                             .font(.system(size: 12))
-                            .foregroundColor(Colors.mediumGrayColor)
+                            .foregroundColor(Color.mediumGrayColor)
                     }
                 }
                 
