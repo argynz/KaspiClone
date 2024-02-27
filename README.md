@@ -1,7 +1,7 @@
 # Kaspi Bank clone application
 
 The app is written on the combination of UIKit and SwiftUI, and divided into modules using SPM:
-* NetworkManager ()
+* NetworkManager 
 * ProfileScreen (UIKit, Userdefaults, load image from Gallery (UIImagePicker), random photo using Unsplash API (URLSession))
 * TransferScreen (UIKit, CoreData, transaction filter using (text, calendar (UICalendarView)), contacts access (CNContact))
 * ShopScreen (SwiftUI, Products and Meme API loading (URLSession))
