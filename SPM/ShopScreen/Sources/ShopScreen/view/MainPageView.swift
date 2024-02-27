@@ -6,9 +6,8 @@ public struct MainPageView: View {
     @ObservedObject public var mainPageViewModel = MainPageViewModel()
     @StateObject private var maximizedImageViewModel = MaximizedImageViewModel()
     
-    public init(mainPageViewModel: MainPageViewModel) {
+    public init() {
         UIScrollView.appearance().bounces = false
-        self.mainPageViewModel = mainPageViewModel
     }
     
     public var body: some View {
@@ -17,9 +16,15 @@ public struct MainPageView: View {
             ScrollView {
                 VStack(spacing: 10) {
                     advertsView
+                        .onAppear {
+                            mainPageViewModel.fetchMemes()
+                    }
                     middleView
                     samsungAd
                     productsView
+                        .onAppear {
+                            mainPageViewModel.fetchProducts()
+                    }
                 }
             }
             .background(Color.backgroundGrayColor)
@@ -81,7 +86,7 @@ public struct MainPageView: View {
                                     }
                                 }
                         })
-                        
+                          
                         Text(mainPageViewModel.memes[index].title)
                             .frame(maxWidth: 165, alignment: .leading)
                             .font(.system(size: 12))
@@ -89,6 +94,7 @@ public struct MainPageView: View {
                             .padding(.bottom, 8)
                             .foregroundColor(Color(red: 144.0/255.0, green: 144.0/255.0, blue: 144.0/255.0))
                     }
+                    .redactShimmer(condition: mainPageViewModel.isMemeLoading)
                 }
             }
             .padding(.horizontal, 18)
@@ -182,6 +188,7 @@ public struct MainPageView: View {
                 LazyVGrid(columns: mainPageViewModel.productsColumns, spacing: 20) {
                     ForEach(0..<mainPageViewModel.products.count, id: \.self) { index in
                         ProductCardView(product: mainPageViewModel.products[index])
+                            .redactShimmer(condition: mainPageViewModel.isProductLoading)
                     }
                 }
             }

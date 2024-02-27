@@ -20,41 +20,16 @@ class TransferPageView {
         confirmationButton.translatesAutoresizingMaskIntoConstraints = false
         return confirmationButton
     }()
-    private lazy var thanksButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Рахмет!", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        button.backgroundColor = .lightGrayColor
-        button.setTitleColor(.black, for: .normal)
-        button.layer.cornerRadius = 14
-        button.layer.borderWidth = 0.5
-        button.layer.borderColor = UIColor.mediumGrayColor.cgColor
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    private lazy var thanksButton: CustomMessageButton = {
+        return CustomMessageButton(title: "Рахмет!")
     }()
-    private lazy var forLunchButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("За обед", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        button.backgroundColor = .lightGrayColor
-        button.setTitleColor(.black, for: .normal)
-        button.layer.cornerRadius = 14
-        button.layer.borderWidth = 0.5
-        button.layer.borderColor = UIColor.mediumGrayColor.cgColor
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+
+    private lazy var forLunchButton: CustomMessageButton = {
+        return CustomMessageButton(title: "За обед")
     }()
-    private lazy var returningButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Возвращаю :)", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        button.backgroundColor = .lightGrayColor
-        button.setTitleColor(.black, for: .normal)
-        button.layer.cornerRadius = 14
-        button.layer.borderWidth = 0.5
-        button.layer.borderColor = UIColor.mediumGrayColor.cgColor
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+
+    private lazy var returningButton: CustomMessageButton = {
+        return CustomMessageButton(title: "Возвращаю :)")
     }()
     private lazy var profileImageView: UIImageView = {
         var profileImageView = UIImageView()
@@ -328,8 +303,7 @@ class TransferPageView {
         messageView.addSubview(thanksButton)
         NSLayoutConstraint.activate([
             thanksButton.topAnchor.constraint(equalTo: messageTFView.bottomAnchor, constant: 16),
-            thanksButton.leadingAnchor.constraint(equalTo: messageView.leadingAnchor, constant: 16),
-            thanksButton.heightAnchor.constraint(equalToConstant: 26)
+            thanksButton.leadingAnchor.constraint(equalTo: messageView.leadingAnchor, constant: 16)
         ])
         thanksButton.addTarget(nil, action: action, for: .touchUpInside)
     }
@@ -337,8 +311,7 @@ class TransferPageView {
         messageView.addSubview(forLunchButton)
         NSLayoutConstraint.activate([
             forLunchButton.topAnchor.constraint(equalTo: messageTFView.bottomAnchor, constant: 16),
-            forLunchButton.leadingAnchor.constraint(equalTo: thanksButton.trailingAnchor, constant: 8),
-            forLunchButton.heightAnchor.constraint(equalToConstant: 26)
+            forLunchButton.leadingAnchor.constraint(equalTo: thanksButton.trailingAnchor, constant: 8)
         ])
         forLunchButton.addTarget(nil, action: action, for: .touchUpInside)
     }
@@ -346,8 +319,7 @@ class TransferPageView {
         messageView.addSubview(returningButton)
         NSLayoutConstraint.activate([
             returningButton.topAnchor.constraint(equalTo: messageTFView.bottomAnchor, constant: 16),
-            returningButton.leadingAnchor.constraint(equalTo: forLunchButton.trailingAnchor, constant: 8),
-            returningButton.heightAnchor.constraint(equalToConstant: 26)
+            returningButton.leadingAnchor.constraint(equalTo: forLunchButton.trailingAnchor, constant: 8)
         ])
         returningButton.addTarget(nil, action: action, for: .touchUpInside)
     }

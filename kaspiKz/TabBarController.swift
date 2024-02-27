@@ -7,10 +7,8 @@ import NetworkManager
 
 class TabBarController: UITabBarController {
     var observer: Any?
-    var mainPageViewModel = MainPageViewModel()
     
-    init(mainPageViewModel: MainPageViewModel) {
-        self.mainPageViewModel = mainPageViewModel
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -35,12 +33,11 @@ class TabBarController: UITabBarController {
     }
     
     private func setupTabs() {
-        let main = createNavBar(with: "Главная", 
+        let main = createNavBar(with: "Главная",
                                 and: UIImage(systemName: "house"),
                                 viewC: UIHostingController(
-                                    rootView: MainPageView(
-                                        mainPageViewModel: mainPageViewModel)))
-        let transfer = createNavBar(with: "Переводы", 
+                                    rootView: MainPageView()))
+        let transfer = createNavBar(with: "Переводы",
                                     and: UIImage(systemName: "repeat"),
                                     viewC: HistoryViewController())
         let profile = createNavBar(with: "Профиль",

@@ -4,6 +4,12 @@ import Const
 
 struct ProductCardView: View {
     var product: Product
+    private var actualPrice: Double
+    
+    init(product: Product) {
+        self.product = product
+        actualPrice = product.price*((100-product.discountPercentage)/100)
+    }
     
     var body: some View {
         NavigationLink(destination: ProductPageView(product: product)) {
@@ -36,12 +42,12 @@ struct ProductCardView: View {
                     .font(.system(size: 12))
                     .foregroundColor(Color.mediumGrayColor)
                 HStack {
-                    Text(String(Int(product.price*((100-product.discountPercentage)/100)))+" $")
+                    Text(String(format: "%.2f", actualPrice) + " $")
                         .font(.system(size: 16))
                         .foregroundColor(Color.black)
                         .bold()
                     Spacer()
-                    Text(String(Int(product.price))+" $")
+                    Text(String(format: "%.2f", product.price) + " $")
                         .font(.system(size: 13))
                         .foregroundColor(Color.black)
                         .bold()

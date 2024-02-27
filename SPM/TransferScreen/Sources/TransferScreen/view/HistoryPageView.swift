@@ -101,6 +101,13 @@ class HistoryPageView {
         return mainView
     }()
     
+    private var transferButtonsView: UIView = {
+        let mainView = UIView()
+        mainView.backgroundColor = .lightGrayColor
+        mainView.translatesAutoresizingMaskIntoConstraints = false
+        return mainView
+    }()
+    
     private var searchBarView: UIView = {
         let mainView = UIView()
         mainView.backgroundColor = .white
@@ -170,8 +177,9 @@ class HistoryPageView {
         containerView.addSubview(segmentController)
         containerView.addSubview(scrollView)
         scrollView.addSubview(mainView)
-        scrollView.addSubview(transferHistoryView)
-        mainView.addSubview(stackView)
+        mainView.addSubview(transferHistoryView)
+        mainView.addSubview(transferButtonsView)
+        transferButtonsView.addSubview(stackView)
         stackView.addArrangedSubview(betweenAccounts)
         stackView.addArrangedSubview(toClientKaspi)
         stackView.addArrangedSubview(toCard)
@@ -186,33 +194,37 @@ class HistoryPageView {
     
     private func setupConstraints(_ containerView: UIView) {
         NSLayoutConstraint.activate([
-            scrollView.bottomAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.bottomAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.heightAnchor.constraint(equalToConstant: 618),
-            
             segmentController.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor, constant: 8),
             segmentController.leadingAnchor.constraint(
                 equalTo: containerView.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             segmentController.trailingAnchor.constraint(
                 equalTo: containerView.safeAreaLayoutGuide.trailingAnchor, constant: -8),
-            segmentController.bottomAnchor.constraint(equalTo: scrollView.topAnchor, constant: -8),
+            
+            scrollView.bottomAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: segmentController.bottomAnchor, constant: 8),
             
             mainView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             mainView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             mainView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            mainView.heightAnchor.constraint(equalToConstant: 618),
+            mainView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            mainView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
             mainView.widthAnchor.constraint(equalToConstant: Const.screenWidth * 2),
-            mainView.heightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.heightAnchor),
             
             transferHistoryView.topAnchor.constraint(equalTo: mainView.topAnchor),
             transferHistoryView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor),
             transferHistoryView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor),
             transferHistoryView.widthAnchor.constraint(equalToConstant: Const.screenWidth),
             
-            stackView.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 8),
-            stackView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: transferHistoryView.leadingAnchor),
+            transferButtonsView.topAnchor.constraint(equalTo: mainView.topAnchor),
+            transferButtonsView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor),
+            transferButtonsView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor),
+            transferButtonsView.widthAnchor.constraint(equalToConstant: Const.screenWidth),
+            
+            stackView.topAnchor.constraint(equalTo: transferButtonsView.topAnchor, constant: 8),
+            stackView.leadingAnchor.constraint(equalTo: transferButtonsView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: transferButtonsView.trailingAnchor),
             
             betweenAccounts.heightAnchor.constraint(equalToConstant: 64),
             toClientKaspi.heightAnchor.constraint(equalToConstant: 64),

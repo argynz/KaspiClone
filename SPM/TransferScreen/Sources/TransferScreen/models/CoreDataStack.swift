@@ -12,7 +12,7 @@ public class CoreDataStack {
             fatalError("Failed to load model named DataModel")
         }
         let container = NSPersistentContainer(name: "DataModel", managedObjectModel: model)
-        container.loadPersistentStores { (storeDescription, error) in
+        container.loadPersistentStores { (_, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
