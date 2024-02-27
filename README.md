@@ -1,14 +1,15 @@
 # Kaspi Bank clone application
 
 The app is written on the combination of UIKit and SwiftUI, and divided into modules using SPM:
-* NetworkManager
-* ProfileScreen (UIKit, Userdefaults, load from Gallery, random photo using Unsplash API)
-* TransferScreen (UIKit, CoreData, transaction search(text, calendar), contacts)
-* ShopScreen (SwiftUI, Products and Meme API loading)
+* NetworkManager ()
+* ProfileScreen (UIKit, Userdefaults, load image from Gallery (UIImagePicker), random photo using Unsplash API (URLSession))
+* TransferScreen (UIKit, CoreData, transaction filter using (text, calendar (UICalendarView)), contacts access (CNContact))
+* ShopScreen (SwiftUI, Products and Meme API loading (URLSession))
 * Constants
 
 ## App demonstration
-https://github.com/argynz/KaspiClone/assets/97120592/949117ae-1e2a-4b89-902e-fdbb6d221e28
+https://github.com/argynz/KaspiClone/assets/97120592/f5a66602-4f46-4601-bcc7-99fc5bf932d6
+
 
 ## Screenshots
 ### Profile Screen
@@ -25,8 +26,8 @@ https://github.com/argynz/KaspiClone/assets/97120592/949117ae-1e2a-4b89-902e-fdb
 <img src='https://github.com/argynz/KaspiClone/assets/97120592/59da4808-7f30-41ef-bc96-daef8ca887f8' width='200'>
 </p>
 <p align="left"> 
-<img src='https://github.com/argynz/KaspiClone/assets/97120592/97752adb-84d5-426d-9f95-c8ed4aa93d75' width='200'>
-<img src='https://github.com/argynz/KaspiClone/assets/97120592/099a6dd8-e3db-4bda-a55e-f220a18b7585' width='200'>
+<img src='https://github.com/argynz/KaspiClone/assets/97120592/523d8c6c-0a0e-49be-88f9-96cae8e96393' width='200'>
+<img src='https://github.com/argynz/KaspiClone/assets/97120592/bccc2f42-08a7-4f83-b3bc-543ed509d83a' width='200'>
 <img src='https://github.com/argynz/KaspiClone/assets/97120592/3ae64bf6-35d9-4aaa-99b8-01b12de05677' width='200'>
 <img src='https://github.com/argynz/KaspiClone/assets/97120592/e2dd6636-2c9b-49da-be4f-22915567ec74' width='200'>
 </p>
