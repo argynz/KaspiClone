@@ -21,7 +21,7 @@ class TabBarController: UITabBarController {
         view.backgroundColor = .white
         tabBar.tintColor = .red
         UINavigationBar.appearance().tintColor = .red
-        setupTabs(memesResult: nil, productsResult: nil)
+        setupTabs()
         selectedIndex = 2
         
         observer = NotificationCenter.default.addObserver(forName: .didChangeTabBarVisibility, 
@@ -32,12 +32,11 @@ class TabBarController: UITabBarController {
         }
     }
     
-    private func setupTabs(memesResult: Result<[Meme], Error>?, productsResult: Result<[Product], Error>?) {
-        let mainPageView = MainPageView(memesResult: memesResult, productsResult: productsResult)
+    private func setupTabs() {
         let main = createNavBar(with: "Главная",
                                 and: UIImage(systemName: "house"),
                                 viewC: UIHostingController(
-                                    rootView: mainPageView))
+                                    rootView: MainPageView()))
         let transfer = createNavBar(with: "Переводы",
                                     and: UIImage(systemName: "repeat"),
                                     viewC: HistoryViewController())
@@ -56,12 +55,4 @@ class TabBarController: UITabBarController {
         nav.viewControllers.first?.navigationItem.title = title
         return nav
     }
-    
-    func updateMainPageView(memesResult: Result<[Meme], Error>?, productsResult: Result<[Product], Error>?) {
-            if let mainNavController = viewControllers?[0] as? UINavigationController,
-               let hostingController = mainNavController.viewControllers.first as? UIHostingController<MainPageView> {
-                hostingController.rootView = MainPageView(memesResult: memesResult, productsResult: productsResult)
-                hostingController.view.setNeedsDisplay()
-            }
-        }
 }

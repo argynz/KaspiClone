@@ -6,32 +6,8 @@ public struct MainPageView: View {
     @ObservedObject public var mainPageViewModel = MainPageViewModel()
     @StateObject private var maximizedImageViewModel = MaximizedImageViewModel()
     
-    public init(memesResult: Result<[Meme], Error>?, productsResult: Result<[Product], Error>?) {
+    public init() {
         UIScrollView.appearance().bounces = false
-        processResult(memesResult: memesResult, productsResult: productsResult)
-    }
-    
-    private func processResult(memesResult: Result<[Meme], Error>?,
-                               productsResult: Result<[Product], Error>?) {
-        if let memesResult = memesResult {
-            switch memesResult {
-            case .success(let memes):
-                mainPageViewModel.memes = memes
-                mainPageViewModel.isMemeLoading.toggle()
-            case .failure:
-                break
-            }
-        }
-        
-        if let productsResult = productsResult {
-            switch productsResult {
-            case .success(let products):
-                mainPageViewModel.products = products
-                mainPageViewModel.isProductLoading.toggle()
-            case .failure:
-                break
-            }
-        }
     }
     
     public var body: some View {
@@ -40,9 +16,15 @@ public struct MainPageView: View {
             ScrollView {
                 VStack(spacing: 10) {
                     advertsView
+                        .onAppear {
+                            mainPageViewModel.fetchMemes()
+                    }
                     middleView
                     samsungAd
                     productsView
+                        .onAppear {
+                            mainPageViewModel.fetchProducts()
+                    }
                 }
             }
             .background(Color.backgroundGrayColor)

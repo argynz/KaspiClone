@@ -14,11 +14,8 @@ public struct Product: Codable {
     public let images: [String]
     
     public static let sample = [
-        Product(id: 1, title: "title", description: "description", 
+        Product(id: 1, title: "", description: "",
                 price: 1, discountPercentage: 1, rating: 1, stock: 1,
-                brand: "brand", category: "category", thumbnail: "", images: [""]),
-        Product(id: 1, title: "title", description: "description", 
-                price: 1, discountPercentage: 1, rating: 1, stock: 1,
-                brand: "brand", category: "category", thumbnail: "", images: [""])
+                brand: "", category: "", thumbnail: "", images: [""])
     ]
 }
